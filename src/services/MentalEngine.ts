@@ -86,7 +86,7 @@ export const MentalEngine = {
         const overallScore = parseFloat(((selfScore * 0.4) + (coachScore * 0.6)).toFixed(1));
 
         // Identify Risks (< 6.0 in weighted score)
-        const risks = dims.filter(d => dimensions[d] < 6.0);
+        const risks: string[] = dims.filter(d => dimensions[d] < 6.0);
         if (blindSpots.length > 0) risks.push('Self-Awareness Gap');
 
         return {

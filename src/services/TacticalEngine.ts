@@ -45,7 +45,7 @@ export interface TacticalProfile {
     // Aggregated Scores
     trainingScore: number;
     matchScore: number;
-    overallTacticalScore: number;
+    overallScore: number;
     dimensions: Record<string, number>;
     status: 'training_ghost' | 'match_performer' | 'consistent' | 'developing';
 }
@@ -124,7 +124,7 @@ export const TacticalEngine = {
         return {
             trainingScore: parseFloat(trainingScore.toFixed(1)),
             matchScore: parseFloat(matchScore.toFixed(1)),
-            overallTacticalScore: parseFloat(overall.toFixed(1)),
+            overallScore: parseFloat(overall.toFixed(1)),
             dimensions,
             status
         };

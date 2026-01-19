@@ -43,7 +43,7 @@ export const AICoachEngine = {
 
         const physScore = avg(physicalRadar);
         const techScore = avg(technicalRadar);
-        const tacScore = tacticalProfile.overallTacticalScore;
+        const tacScore = tacticalProfile.overallScore;
         const menScore = mentalProfile.overallScore;
 
         // 2. Weighted Average
@@ -149,7 +149,7 @@ export const AICoachEngine = {
         }
 
         // Add 1 Tactical Drill
-        if (tacticalProfile.overallTacticalScore < 7) {
+        if (tacticalProfile.overallScore < 7) {
             drills.push('drills.tactical_fundamentals');
         } else {
             drills.push('drills.advanced_positional');

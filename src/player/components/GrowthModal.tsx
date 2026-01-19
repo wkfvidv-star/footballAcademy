@@ -31,7 +31,7 @@ export const GrowthModal: React.FC<GrowthModalProps> = ({ isOpen, onClose, onSub
             heightCm: parseFloat(height),
             weightKg: parseFloat(weight),
             sittingHeightCm: parseFloat(sittingHeight) || 0,
-            source: 'home'
+            source: 'external'
         }, {
             fatherHeightCm: parseFloat(fatherHeight),
             motherHeightCm: parseFloat(motherHeight)

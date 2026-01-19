@@ -17,7 +17,7 @@ export const TacticalProvider: React.FC<{ children: ReactNode }> = ({ children }
     const [tacticalProfile, setTacticalProfile] = useState<TacticalProfile>({
         trainingScore: 0,
         matchScore: 0,
-        overallTacticalScore: 0,
+        overallScore: 0,
         dimensions: {
             positioning: 0, offBallMovement: 0, defensiveAwareness: 0, pressing: 0,
             transition: 0, decisionMaking: 0, spaceOccupation: 0, teamShape: 0
