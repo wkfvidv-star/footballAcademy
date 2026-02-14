@@ -43,8 +43,8 @@ export default function InjuryDetectionDashboard() {
                                 <div className="flex justify-between items-center">
                                     <span className="text-sm font-black text-white italic uppercase">{t(risk.area)}</span>
                                     <span className={`text-[10px] px-2.5 py-1 rounded-full font-black uppercase tracking-widest ${risk.severity === 'critical' ? 'bg-red-500 text-zinc-900' :
-                                            risk.severity === 'high' ? 'bg-orange-500 text-zinc-900' :
-                                                'bg-yellow-500 text-zinc-900'
+                                        risk.severity === 'high' ? 'bg-orange-500 text-zinc-900' :
+                                            'bg-yellow-500 text-zinc-900'
                                         }`}>
                                         {t(`injury_module.level.${risk.severity}`)}
                                     </span>
@@ -63,23 +63,23 @@ export default function InjuryDetectionDashboard() {
                 </div>
 
                 {/* Internal Load Metrics */}
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-zinc-900/40 border border-white/5 p-4 rounded-2xl flex items-center gap-4 group hover:border-primary/20 transition-all">
-                        <div className="p-2 bg-primary/10 rounded-xl">
-                            <Activity className="w-5 h-5 text-primary" />
+                <div className="grid grid-cols-2 gap-3 md:gap-4">
+                    <div className="bg-zinc-900/40 border border-white/5 p-3 md:p-4 rounded-2xl flex items-center gap-3 md:gap-4 group hover:border-primary/20 transition-all">
+                        <div className="p-1.5 md:p-2 bg-primary/10 rounded-xl shrink-0">
+                            <Activity className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                         </div>
-                        <div>
-                            <div className="text-[10px] text-zinc-500 uppercase font-black mb-0.5">{t('injury_module.acwr')}</div>
-                            <div className="text-lg font-black text-red-500 italic">1.60</div>
+                        <div className="min-w-0">
+                            <div className="text-[8px] md:text-[10px] text-zinc-500 uppercase font-black mb-0.5 truncate">{t('injury_module.acwr')}</div>
+                            <div className="text-base md:text-lg font-black text-red-500 italic">1.60</div>
                         </div>
                     </div>
-                    <div className="bg-zinc-900/40 border border-white/5 p-4 rounded-2xl flex items-center gap-4 group hover:border-primary/20 transition-all">
-                        <div className="p-2 bg-primary/10 rounded-xl">
-                            <Thermometer className="w-5 h-5 text-primary" />
+                    <div className="bg-zinc-900/40 border border-white/5 p-3 md:p-4 rounded-2xl flex items-center gap-3 md:gap-4 group hover:border-primary/20 transition-all">
+                        <div className="p-1.5 md:p-2 bg-primary/10 rounded-xl shrink-0">
+                            <Thermometer className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                         </div>
-                        <div>
-                            <div className="text-[10px] text-zinc-500 uppercase font-black mb-0.5">{t('injury_module.fatigue')}</div>
-                            <div className="text-lg font-black text-white italic uppercase">{t('injury_module.level.high')}</div>
+                        <div className="min-w-0">
+                            <div className="text-[8px] md:text-[10px] text-zinc-500 uppercase font-black mb-0.5 truncate">{t('injury_module.fatigue')}</div>
+                            <div className="text-base md:text-lg font-black text-white italic uppercase truncate">{t('injury_module.level.high')}</div>
                         </div>
                     </div>
                 </div>

@@ -53,38 +53,38 @@ export default function MetricsTable() {
     });
 
     return (
-        <div className="bg-card/50 rounded-3xl border border-white/5 p-8">
-            <div className="flex justify-between items-center mb-8">
-                <h3 className="text-xl font-bold">{t('metrics.recentEvaluations')}</h3>
-                <button className="text-primary text-sm font-bold hover:underline">{t('metrics.viewAllAssessments')}</button>
+        <div className="bg-card/50 rounded-2xl md:rounded-3xl border border-white/5 p-4 md:p-8">
+            <div className="flex justify-between items-center mb-6 md:mb-8">
+                <h3 className="text-lg md:text-xl font-bold">{t('metrics.recentEvaluations')}</h3>
+                <button className="text-primary text-[10px] md:text-sm font-bold hover:underline">{t('metrics.viewAllAssessments')}</button>
             </div>
 
             {/* Batch Actions Bar */}
             {selectedRows.length > 0 && (
-                <div className="mb-4 p-3 bg-primary/10 border border-primary/30 rounded-xl flex items-center justify-between">
-                    <span className="text-sm font-bold text-primary">{t('metrics.selected', { count: selectedRows.length })}</span>
+                <div className="mb-4 p-3 bg-primary/10 border border-primary/30 rounded-xl flex items-center justify-between overflow-x-auto hide-scrollbar">
+                    <span className="text-[10px] md:text-sm font-bold text-primary whitespace-nowrap mr-4">{t('metrics.selected', { count: selectedRows.length })}</span>
                     <div className="flex gap-2">
-                        <button className="flex items-center gap-2 px-3 py-1.5 bg-primary/20 hover:bg-primary/30 rounded-lg text-xs font-bold text-white transition-colors">
-                            <GitCompare className="w-3.5 h-3.5" />
+                        <button className="flex items-center gap-2 px-3 py-1.5 bg-primary/20 hover:bg-primary/30 rounded-lg text-[9px] md:text-xs font-bold text-white transition-colors whitespace-nowrap">
+                            <GitCompare className="w-3 h-3 md:w-3.5 md:h-3.5" />
                             {t('metrics.compare')}
                         </button>
-                        <button className="flex items-center gap-2 px-3 py-1.5 bg-primary/20 hover:bg-primary/30 rounded-lg text-xs font-bold text-white transition-colors">
-                            <Download className="w-3.5 h-3.5" />
+                        <button className="flex items-center gap-2 px-3 py-1.5 bg-primary/20 hover:bg-primary/30 rounded-lg text-[9px] md:text-xs font-bold text-white transition-colors whitespace-nowrap">
+                            <Download className="w-3 h-3 md:w-3.5 md:h-3.5" />
                             {t('metrics.export')}
                         </button>
-                        <button className="flex items-center gap-2 px-3 py-1.5 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-xs font-bold text-red-400 transition-colors">
-                            <Trash2 className="w-3.5 h-3.5" />
+                        <button className="flex items-center gap-2 px-3 py-1.5 bg-red-500/20 hover:bg-red-500/30 rounded-lg text-[9px] md:text-xs font-bold text-red-400 transition-colors whitespace-nowrap">
+                            <Trash2 className="w-3 h-3 md:w-3.5 md:h-3.5" />
                             {t('metrics.delete')}
                         </button>
                     </div>
                 </div>
             )}
 
-            <div className="overflow-x-auto">
-                <table className="w-full text-start">
+            <div className="overflow-x-auto -mx-4 px-4 md:mx-0 md:px-0 hide-scrollbar">
+                <table className="w-full text-start min-w-[600px] md:min-w-full">
                     <thead>
-                        <tr className="text-zinc-500 text-xs uppercase tracking-widest border-b border-white/5">
-                            <th className="pb-4 text-start">
+                        <tr className="text-zinc-500 text-[9px] md:text-xs uppercase tracking-widest border-b border-white/5">
+                            <th className="pb-4 text-start w-8">
                                 <input
                                     type="checkbox"
                                     checked={selectedRows.length === metrics.length}
@@ -139,7 +139,7 @@ export default function MetricsTable() {
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="text-sm">
+                    <tbody className="text-[11px] md:text-sm">
                         {sortedMetrics.map((row) => (
                             <tr
                                 key={row.id}
@@ -157,7 +157,7 @@ export default function MetricsTable() {
                                             onClick={(e) => e.stopPropagation()}
                                         />
                                         {selectedRows.includes(row.id) && (
-                                            <Check className="w-3 h-3 text-primary" />
+                                            <Check className="w-2.5 h-2.5 md:w-3 md:h-3 text-primary" />
                                         )}
                                     </div>
                                 </td>
@@ -166,7 +166,7 @@ export default function MetricsTable() {
                                 </td>
                                 <td className="py-4 text-zinc-400">{row.category}</td>
                                 <td className="py-4">
-                                    <span className="bg-primary/10 text-primary px-2 py-1 rounded font-bold">
+                                    <span className="bg-primary/10 text-primary px-2 py-0.5 md:py-1 rounded font-bold">
                                         {row.score}
                                     </span>
                                 </td>

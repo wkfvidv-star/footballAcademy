@@ -37,14 +37,12 @@ import CoachInjury from './coach/pages/Injury';
 import CoachNutrition from './coach/pages/Nutrition';
 
 import { useTranslation } from 'react-i18next';
-import GuidedTour from './components/shared/GuidedTour';
 
 function App() {
   const { i18n } = useTranslation();
 
   return (
     <AuthProvider key={i18n.language}>
-      <GuidedTour />
       <MedicalProvider>
         <PhysicalProvider>
           <TechnicalProvider>

@@ -15,11 +15,11 @@ export default function PerformanceChart() {
     ];
 
     return (
-        <div className="w-full h-full min-h-[300px]">
+        <div className="w-full h-full min-h-[250px] md:min-h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
                 <AreaChart
                     data={data}
-                    margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+                    margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
                 >
                     <defs>
                         <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
@@ -32,13 +32,14 @@ export default function PerformanceChart() {
                         dataKey="name"
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fill: '#71717a', fontSize: 12 }}
+                        tick={{ fill: '#71717a', fontSize: 10 }}
                         dy={10}
+                        interval="preserveStartEnd"
                     />
                     <YAxis
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fill: '#71717a', fontSize: 12 }}
+                        tick={{ fill: '#71717a', fontSize: 10 }}
                         domain={[0, 100]}
                     />
                     <Tooltip
@@ -46,16 +47,17 @@ export default function PerformanceChart() {
                             backgroundColor: '#18181b',
                             border: '1px solid rgba(255,255,255,0.1)',
                             borderRadius: '8px',
-                            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)'
+                            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                            fontSize: '10px'
                         }}
-                        itemStyle={{ fontSize: '12px' }}
+                        itemStyle={{ fontSize: '10px' }}
                         labelStyle={{ color: '#a1a1aa', marginBottom: '4px' }}
                     />
                     <Area
                         type="monotone"
                         dataKey="value"
                         stroke="#22c55e"
-                        strokeWidth={3}
+                        strokeWidth={2}
                         fillOpacity={1}
                         fill="url(#colorValue)"
                         name={t('coach.dashboard.team_avg', 'Team Avg')}

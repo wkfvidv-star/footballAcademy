@@ -50,33 +50,33 @@ export default function RecoveryModule() {
                 </div>
             }
         >
-            <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-white/5 p-4 rounded-2xl border border-white/5 group hover:border-white/10 transition-colors">
-                    <div className="text-[10px] text-zinc-500 uppercase font-black mb-1">{t('dashboard_new.fatigue_level')}</div>
-                    <div className="text-lg font-black text-white italic">{latestWellness.fatigueLevel}<span className="text-zinc-600 not-italic">/5</span></div>
+            <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6">
+                <div className="bg-white/5 p-3 md:p-4 rounded-2xl border border-white/5 group hover:border-white/10 transition-colors">
+                    <div className="text-[9px] md:text-[10px] text-zinc-500 uppercase font-black mb-1">{t('dashboard_new.fatigue_level')}</div>
+                    <div className="text-base md:text-lg font-black text-white italic">{latestWellness.fatigueLevel}<span className="text-zinc-600 not-italic text-xs">/5</span></div>
                 </div>
-                <div className="bg-white/5 p-4 rounded-2xl border border-white/5 group hover:border-white/10 transition-colors">
-                    <div className="text-[10px] text-zinc-500 uppercase font-black mb-1">{t('dashboard_new.muscle_soreness')}</div>
-                    <div className="text-lg font-black text-white italic">{latestWellness.sorenessLevel}<span className="text-zinc-600 not-italic">/5</span></div>
+                <div className="bg-white/5 p-3 md:p-4 rounded-2xl border border-white/5 group hover:border-white/10 transition-colors">
+                    <div className="text-[9px] md:text-[10px] text-zinc-500 uppercase font-black mb-1">{t('dashboard_new.muscle_soreness')}</div>
+                    <div className="text-base md:text-lg font-black text-white italic">{latestWellness.sorenessLevel}<span className="text-zinc-600 not-italic text-xs">/5</span></div>
                 </div>
             </div>
 
             <div className="space-y-3">
-                <div className="text-[10px] text-zinc-500 uppercase font-black tracking-widest mb-2 px-1">
+                <div className="text-[9px] md:text-[10px] text-zinc-500 uppercase font-black tracking-widest mb-2 px-1">
                     {t(recovery.strategy)}
                 </div>
 
                 {recovery.activities.map((act, i) => (
-                    <div key={i} className="flex gap-4 p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-primary/20 transition-all group">
-                        <div className="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-primary group-hover:bg-primary/10 transition-all shrink-0">
+                    <div key={i} className="flex gap-3 md:gap-4 p-3 md:p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-primary/20 transition-all group">
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-primary group-hover:bg-primary/10 transition-all shrink-0">
                             {getIcon(act.title)}
                         </div>
-                        <div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-sm font-black text-white italic uppercase tracking-tight">{t(act.title)}</span>
-                                <span className="text-[10px] px-2 py-0.5 bg-zinc-800 text-zinc-500 rounded-lg font-mono italic">{act.duration}</span>
+                        <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-2">
+                                <span className="text-xs md:text-sm font-black text-white italic uppercase tracking-tight truncate shrink-0">{t(act.title)}</span>
+                                <span className="text-[8px] md:text-[10px] px-2 py-0.5 bg-zinc-800 text-zinc-500 rounded-lg font-mono italic">{act.duration}</span>
                             </div>
-                            <p className="text-[11px] text-zinc-400 leading-snug mt-1 font-medium">{t(act.description)}</p>
+                            <p className="text-[10px] md:text-[11px] text-zinc-400 leading-snug mt-1 font-medium italic">{t(act.description)}</p>
                         </div>
                     </div>
                 ))}
