@@ -8,6 +8,12 @@ export interface GrowthMeasurement {
     heightCm: number;
     sittingHeightCm: number;
     weightKg: number;
+    // Physiological metrics
+    restingHR?: number;
+    hrv?: number;
+    bloodPressure?: { systolic: number; diastolic: number };
+    bodyFatPercentage?: number;
+    vo2Max?: number; // direct or estimated
     // Metadata for the measurement source (e.g., 'clinic', 'home', 'academy')
     source: 'academy' | 'external';
     verifiedBy?: string; // Coach ID who verified the measurement
@@ -26,6 +32,14 @@ export interface BiologicalProfile {
     maturityOffsetYears: number; // Years from PHV (e.g., -1.5 or +0.5)
     bioBand: BioBand;
     maturityStatus: MaturityStatus;
+    // Physiological metrics
+    physiological?: {
+        restingHR: number;
+        hrv: number;
+        bloodPressure: string;
+        bodyFatPercentage: number;
+        vo2Max: number;
+    };
     phvDate?: string; // Estimated date of Peak Height Velocity
     lastUpdated: string;
 }

@@ -24,8 +24,9 @@ export const WellnessModal = ({ isOpen, onClose, onSubmit }: WellnessModalProps)
         { key: 'sleepQuality', label: 'How did you sleep?', icon: Moon, minLabel: 'Poor', maxLabel: 'Excellent' },
         { key: 'fatigueLevel', label: 'How fresh do you feel?', icon: Battery, minLabel: 'Exhausted', maxLabel: 'Fresh' },
         { key: 'sorenessLevel', label: 'Muscle Soreness?', icon: Activity, minLabel: 'Very Sore', maxLabel: 'No Pain' },
-        { key: 'stressLevel', label: 'Stress Level?', icon: Brain, minLabel: 'High Stress', maxLabel: 'Relaxed' },
-        { key: 'mood', label: 'Current Mood?', icon: Smile, minLabel: 'Negative', maxLabel: 'Positive' }
+        { key: 'restingHR', label: 'Resting Heart Rate (BPM)', icon: Activity, min: 40, max: 100, step: 1, unit: 'BPM' },
+        { key: 'hrv', label: 'Heart Rate Variability (ms)', icon: Activity, min: 20, max: 120, step: 1, unit: 'ms' },
+        { key: 'vo2Max', label: 'Estimated VO2 Max', icon: Activity, min: 30, max: 70, step: 0.1, unit: 'ml/kg/min' },
     ] as const;
 
     const currentMetric = metrics[step];
@@ -64,35 +65,44 @@ export const WellnessModal = ({ isOpen, onClose, onSubmit }: WellnessModalProps)
 
                 <div className="space-y-8">
                     <div className="flex justify-between items-end px-2">
-                        <span className="text-xs font-bold text-zinc-500 uppercase">{currentMetric.minLabel}</span>
-                        <span className="text-4xl font-black text-white">{(data as any)[currentMetric.key]}</span>
-                        <span className="text-xs font-bold text-zinc-500 uppercase">{currentMetric.maxLabel}</span>
+                        <span className="text-xs font-bold text-zinc-500 uppercase">
+                            {'minLabel' in currentMetric ? currentMetric.minLabel : `${currentMetric.min} ${currentMetric.unit}`}
+                        </span>
+                        <span className="text-4xl font-black text-white">
+                            {(data as any)[currentMetric.key] || ('min' in currentMetric ? currentMetric.min : 3)}
+                            {'unit' in currentMetric && <span className="text-sm ml-1 text-zinc-500">{currentMetric.unit}</span>}
+                        </span>
+                        <span className="text-xs font-bold text-zinc-500 uppercase">
+                            {'maxLabel' in currentMetric ? currentMetric.maxLabel : `${currentMetric.max} ${currentMetric.unit}`}
+                        </span>
                     </div>
 
                     <input
                         type="range"
-                        min="1"
-                        max="5"
-                        step="1"
-                        value={(data as any)[currentMetric.key]}
-                        onChange={(e) => handleValueChange(parseInt(e.target.value))}
+                        min={'min' in currentMetric ? currentMetric.min : 1}
+                        max={'max' in currentMetric ? currentMetric.max : 5}
+                        step={'step' in currentMetric ? currentMetric.step : 1}
+                        value={(data as any)[currentMetric.key] || ('min' in currentMetric ? currentMetric.min : 3)}
+                        onChange={(e) => handleValueChange(parseFloat(e.target.value))}
                         className="w-full h-2 bg-zinc-800 rounded-lg appearance-none cursor-pointer accent-primary"
                     />
 
-                    <div className="flex gap-2 justify-center">
-                        {[1, 2, 3, 4, 5].map(v => (
-                            <button
-                                key={v}
-                                onClick={() => handleValueChange(v)}
-                                className={`w-10 h-10 rounded-xl font-bold flex items-center justify-center transition-all ${(data as any)[currentMetric.key] === v
+                    {!('unit' in currentMetric) && (
+                        <div className="flex gap-2 justify-center">
+                            {[1, 2, 3, 4, 5].map(v => (
+                                <button
+                                    key={v}
+                                    onClick={() => handleValueChange(v)}
+                                    className={`w-10 h-10 rounded-xl font-bold flex items-center justify-center transition-all ${(data as any)[currentMetric.key] === v
                                         ? 'bg-primary text-black scale-110 shadow-lg shadow-primary/25'
                                         : 'bg-zinc-800 text-zinc-500 hover:bg-zinc-700'
-                                    }`}
-                            >
-                                {v}
-                            </button>
-                        ))}
-                    </div>
+                                        }`}
+                                >
+                                    {v}
+                                </button>
+                            ))}
+                        </div>
+                    )}
 
                     <button
                         onClick={handleNext}

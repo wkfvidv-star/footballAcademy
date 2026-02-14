@@ -43,6 +43,21 @@ export default function CoachLogin() {
         }
     };
 
+    const handleDemoLogin = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const { user, error } = await signIn('coach@example.com', 'password123');
+            if (error) throw new Error(error);
+            if (user?.role !== 'coach') throw new Error('Demo user has invalid role');
+            navigate('/coach/dashboard');
+        } catch (err: any) {
+            setError(err.message || 'Failed to sign in with demo credentials');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-[#09090b] flex items-center justify-center p-4 relative">
             <div className="absolute top-6 right-6 z-50">
@@ -101,6 +116,18 @@ export default function CoachLogin() {
                         )}
                     </AuthButton>
                 </form>
+
+                <div className="pt-2">
+                    <button
+                        type="button"
+                        onClick={handleDemoLogin}
+                        disabled={loading}
+                        className="w-full flex items-center justify-center gap-2 p-3 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 rounded-xl text-zinc-300 transition-all text-sm font-medium"
+                    >
+                        {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Shield className="w-4 h-4" />}
+                        Demo Coach Login
+                    </button>
+                </div>
 
                 <div className="text-center space-y-4">
                     <p className="text-sm text-zinc-500">

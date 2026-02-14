@@ -1,13 +1,12 @@
 import { Outlet } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
+import Sidebar from '../components/shared/Sidebar';
 
 export default function CoachLayout() {
     return (
-        <div className="min-h-screen bg-background text-foreground flex">
-            <Sidebar />
-            <main className="flex-1 overflow-auto bg-[#09090b]">
-                {/* Helper layout container for content consistency */}
-                <div className="p-6 lg:p-10 w-full max-w-[1600px] mx-auto">
+        <div className="min-h-screen text-foreground flex">
+            <Sidebar role="coach" />
+            <main className="flex-1 ml-72">
+                <div className="p-8 lg:p-12 w-full max-w-[1600px] mx-auto min-h-screen">
                     <Outlet />
                 </div>
             </main>

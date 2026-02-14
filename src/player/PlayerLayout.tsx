@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import MobileNav from './components/MobileNav';
-import PlayerHeader from './components/Header';
+import Sidebar from '../components/shared/Sidebar';
 
 export default function PlayerLayout() {
     return (
-        <div className="min-h-screen bg-[#09090b] text-foreground pb-20">
-            <PlayerHeader />
-            <main className="px-4 py-2">
-                <Outlet />
+        <div className="min-h-screen text-foreground flex">
+            <Sidebar role="player" />
+            <main className="flex-1 ml-72">
+                <div className="p-8 lg:p-12 w-full max-w-[1600px] mx-auto min-h-screen">
+                    <Outlet />
+                </div>
             </main>
-            <MobileNav />
         </div>
     );
 }

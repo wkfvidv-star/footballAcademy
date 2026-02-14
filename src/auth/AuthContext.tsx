@@ -11,6 +11,7 @@ interface AuthContextType {
     // Expose direct methods for components
     signIn: typeof mockAuth.signIn;
     signUp: typeof mockAuth.signUp;
+    seedDemoUsers: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,6 +22,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     useEffect(() => {
         // Initialize session
+        mockAuth.seedDemoUsers(); // Ensure demo users exist
         const sessionUser = mockAuth.getSession();
         setUser(sessionUser);
         setLoading(false);
@@ -58,7 +60,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             login,
             logout,
             signIn: exposedSignIn,
-            signUp: exposedSignUp
+            signUp: exposedSignUp,
+            seedDemoUsers: mockAuth.seedDemoUsers
         }}>
             {!loading && children}
         </AuthContext.Provider>

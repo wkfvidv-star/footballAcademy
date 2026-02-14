@@ -1,4 +1,4 @@
-import { Activity, Calendar, TrendingUp } from 'lucide-react';
+import { Activity, Calendar, TrendingUp, AlertCircle, HeartPulse, Activity as ActivityIcon, Dumbbell, AlertTriangle, Target, BrainCircuit, Brain, Trophy, Map, LayoutDashboard, Zap, GraduationCap } from 'lucide-react';
 import { useTranslation, Trans } from 'react-i18next';
 import PlayerCard from './components/PlayerCard';
 
@@ -24,9 +24,13 @@ import { TacticalRadar } from './components/TacticalRadar';
 import { MentalRadar } from './components/MentalRadar';
 import { PDICard } from './components/PDICard';
 import { TrainingRecommendations } from './components/TrainingRecommendations';
-import { AlertCircle, HeartPulse, Activity as ActivityIcon, Dumbbell, AlertTriangle, Target, BrainCircuit, Brain, Trophy, Map } from 'lucide-react';
 import { useState } from 'react';
 import { GPSAnalysisModal } from './components/GPSAnalysisModal';
+import NutritionModule from '../components/Nutrition/NutritionModule';
+import InjuryDetectionDashboard from '../components/Dashboard/InjuryDetectionDashboard';
+import EducationModule from '../components/Education/EducationModule';
+import RecoveryModule from '../components/Recovery/RecoveryModule';
+import { GlassCard } from '../components/shared/GlassCard';
 
 export default function Dashboard() {
     const { t } = useTranslation();
@@ -55,24 +59,8 @@ export default function Dashboard() {
         setBioProfile(profile);
     };
 
-    const getRiskColor = (risk?: string) => {
-        switch (risk) {
-            case 'critical': return 'text-red-500';
-            case 'high': return 'text-red-500';
-            case 'moderate': return 'text-amber-500';
-            default: return 'text-green-500';
-        }
-    };
-
-    const playerStats = {
-        physical: 84,
-        technical: 89,
-        tactical: tacticalProfile?.overallScore ? tacticalProfile.overallScore * 10 : 82,
-        mental: mentalProfile?.overallScore ? mentalProfile.overallScore * 10 : 85
-    };
-
     return (
-        <div className="space-y-6 pb-24">
+        <div className="space-y-12 pb-24">
             {/* --- MODALS --- */}
             <GrowthModal isOpen={showGrowthModal} onClose={() => setShowGrowthModal(false)} onSubmit={handleGrowthSubmit} />
             <WellnessModal isOpen={showWellnessModal} onClose={() => setShowWellnessModal(false)} onSubmit={submitWellness} />
@@ -85,266 +73,302 @@ export default function Dashboard() {
             <GPSAnalysisModal isOpen={showGPSModal} onClose={() => setShowGPSModal(false)} />
 
             {/* --- HEADER --- */}
-            <div className="flex items-center justify-between px-2">
-                <div>
-                    <h1 className="text-2xl font-black text-white tracking-tight">
-                        {t('dashboard.welcome', { name: 'Riyad' })}
-                    </h1>
-                    <p className="text-zinc-400 text-sm font-medium">{t('dashboard.ready_message')}</p>
-                </div>
-                <div className="flex items-center gap-3">
-                    <button onClick={() => setShowSessionModal(true)} className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center border border-white/10 transition-colors">
-                        <ActivityIcon className="w-5 h-5 text-white" />
-                    </button>
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-white font-bold shadow-lg shadow-primary/20">
+            <div className="flex items-center justify-between px-4">
+                <div className="flex items-center gap-4">
+                    <div className="w-14 h-14 rounded-3xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center text-zinc-900 font-black text-xl shadow-2xl shadow-primary/20 transform -rotate-3 group hover:rotate-0 transition-all">
                         RM
                     </div>
+                    <div>
+                        <h1 className="text-3xl font-black text-white tracking-tighter uppercase italic">
+                            {t('dashboard.welcome', { name: 'Riyad' })}
+                        </h1>
+                        <p className="text-zinc-500 text-xs font-black uppercase tracking-widest flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                            {t('dashboard.ready_message')}
+                        </p>
+                    </div>
+                </div>
+                <div className="flex items-center gap-4">
+                    <button
+                        onClick={() => setShowSessionModal(true)}
+                        className="h-12 px-6 rounded-2xl bg-white/5 hover:bg-white/10 flex items-center gap-3 border border-white/10 transition-all active:scale-95 group"
+                    >
+                        <ActivityIcon className="w-5 h-5 text-primary group-hover:scale-110 transition-all" />
+                        <span className="text-[10px] font-black text-white uppercase tracking-widest">{t('dashboard.log_activity')}</span>
+                    </button>
+                    {!hasCheckedInToday && (
+                        <button
+                            onClick={() => setShowWellnessModal(true)}
+                            className="h-12 px-6 rounded-2xl bg-primary text-zinc-900 flex items-center gap-3 shadow-xl shadow-primary/20 transition-all active:scale-95 group"
+                        >
+                            <LayoutDashboard className="w-5 h-5 group-hover:rotate-12 transition-all" />
+                            <span className="text-[10px] font-black uppercase tracking-widest">{t('dashboard.daily_checkin')}</span>
+                        </button>
+                    )}
                 </div>
             </div>
 
-            {/* --- HERO: AI COACH --- */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* --- AI STRATEGY & RECOMMENDATIONS --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4">
                 <PDICard />
                 <TrainingRecommendations />
             </div>
 
-            {/* --- HERO: BIO CARD --- */}
-            <BioCard profile={bioProfile} onUpdateClick={() => setShowGrowthModal(true)} />
-
-
-            {/* --- MAIN GRID --- */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-                {/* LEFT COLUMN (2/3): METRICS */}
-                <div className="lg:col-span-2 space-y-6">
-
-                    {/* Medical / Load */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div onClick={() => !hasCheckedInToday && setShowWellnessModal(true)}
-                            className={`p-5 rounded-3xl border transition-all relative overflow-hidden ${hasCheckedInToday ? 'bg-green-500/10 border-green-500/20 cursor-default' : 'bg-primary border-primary cursor-pointer shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95'}`}>
-                            <div className="relative z-10">
-                                <div className={`p-2 rounded-xl w-fit mb-3 ${hasCheckedInToday ? 'bg-green-500/20' : 'bg-black/20 backdrop-blur-sm'}`}>
-                                    <HeartPulse className={`w-6 h-6 ${hasCheckedInToday ? 'text-green-500' : 'text-white'}`} />
-                                </div>
-                                <h3 className={`text-lg font-black leading-tight mb-1 ${hasCheckedInToday ? 'text-white' : 'text-black'}`}>
-                                    {hasCheckedInToday ? 'Readiness Logged' : 'Daily Check-in'}
-                                </h3>
-                                <p className={`text-xs font-bold leading-tight ${hasCheckedInToday ? 'text-zinc-400' : 'text-black/60'}`}>
-                                    {hasCheckedInToday ? 'Updates tomorrow' : 'Log sleep & fatigue'}
-                                </p>
-                            </div>
-                            {!hasCheckedInToday && <Activity className="absolute -bottom-4 -right-4 w-24 h-24 text-black/10 rotate-12" />}
+            {/* --- SECTION: READINESS --- */}
+            <section className="space-y-6">
+                <div className="flex items-center justify-between px-6">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2.5 bg-red-500/10 rounded-2xl">
+                            <HeartPulse className="w-5 h-5 text-red-500" />
                         </div>
-
-                        <div className="p-5 rounded-3xl bg-zinc-900/50 border border-white/5 flex flex-col justify-between relative overflow-hidden">
-                            <div className="flex justify-between items-start z-10">
-                                <div className="p-2 bg-zinc-800 rounded-xl">
-                                    <AlertCircle className={`w-5 h-5 ${getRiskColor(loadMetrics?.riskLevel)}`} />
-                                </div>
-                                {loadMetrics ? (
-                                    <div className="text-right">
-                                        <div className={`text-2xl font-black ${getRiskColor(loadMetrics.riskLevel)}`}>{loadMetrics.acwr}</div>
-                                        <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">ACWR Ratio</div>
-                                    </div>
-                                ) : <div className="text-xs text-zinc-500 font-bold mt-2">No Data</div>}
-                            </div>
-                            <div className="z-10 mt-4">
-                                <div className="text-sm font-bold text-white mb-1">
-                                    {loadMetrics?.riskLevel === 'critical' || loadMetrics?.riskLevel === 'high' ? 'High Injury Risk' : loadMetrics?.riskLevel === 'moderate' ? 'Monitor Load' : 'Optimal Load'}
-                                </div>
-                                <div className="w-full h-1.5 bg-zinc-800 rounded-full overflow-hidden">
-                                    <div className={`h-full rounded-full ${loadMetrics?.riskLevel === 'low' ? 'bg-green-500' : loadMetrics?.riskLevel === 'moderate' ? 'bg-amber-500' : 'bg-red-500'}`} style={{ width: `${Math.min(((loadMetrics?.acwr || 0) / 2) * 100, 100)}%` }} />
-                                </div>
-                            </div>
+                        <div>
+                            <h2 className="text-xl font-black text-white italic uppercase tracking-tight">{t('dashboard.readiness')}</h2>
+                            <p className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">{t('dashboard.health_recovery_status')}</p>
                         </div>
                     </div>
-
-                    {/* Physical */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-zinc-900/50 border border-white/5 p-6 rounded-3xl relative overflow-hidden">
-                            <div className="flex justify-between items-center mb-4 relative z-10">
-                                <div>
-                                    <h3 className="text-lg font-black text-white">{t('dashboard.physical_engine')}</h3>
-                                    <p className="text-xs font-medium text-zinc-500">{t('dashboard.bio_adjusted')} {maturityStatus === 'late' ? t('dashboard.late_bloomer') : ''}</p>
-                                </div>
-                                <button onClick={() => setShowTestModal(true)} className="bg-zinc-800 hover:bg-zinc-700 text-white p-2 rounded-xl border border-white/5"><Dumbbell className="w-4 h-4" /></button>
-                            </div>
-                            <PhysicalRadar />
-                        </div>
-                        <div className="bg-zinc-900/50 border border-white/5 p-6 rounded-3xl">
-                            <h3 className="text-lg font-black text-white mb-4">{t('dashboard.focus_areas')}</h3>
-                            {weaknesses.length > 0 ? (
-                                <div className="space-y-3">
-                                    {weaknesses.map(weakness => (
-                                        <div key={weakness} className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl flex items-center justify-between">
-                                            <div className="flex items-center gap-3"><AlertTriangle className="w-4 h-4 text-red-500" /><span className="text-sm font-bold text-white max-w-[120px] truncate">{weakness}</span></div>
-                                            <button className="text-xs font-bold text-red-400 hover:underline">{t('dashboard.view_drills')}</button>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : <div className="text-center py-8 text-zinc-500 text-sm">{t('dashboard.no_weaknesses')}</div>}
-                        </div>
-                    </div>
-
-                    {/* Technical */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-zinc-900/50 border border-white/5 p-6 rounded-3xl relative overflow-hidden">
-                            <div className="flex justify-between items-center mb-4 relative z-10">
-                                <div>
-                                    <h3 className="text-lg font-black text-white">{t('dashboard.technical_intelligence')}</h3>
-                                    <p className="text-xs font-medium text-zinc-500">{t('dashboard.positional')}: {position}</p>
-                                </div>
-                                <button onClick={() => setShowTechModal(true)} className="bg-blue-600/20 text-blue-500 p-2 rounded-xl border border-blue-500/20"><Target className="w-4 h-4" /></button>
-                            </div>
-                            <TechnicalRadar />
-                        </div>
-                        <div className="bg-zinc-900/50 border border-white/5 p-6 rounded-3xl">
-                            <h3 className="text-lg font-black text-white mb-4">{t('dashboard.tech_targets')}</h3>
-                            {techWeaknesses.length > 0 ? (
-                                <div className="space-y-3">
-                                    {techWeaknesses.map(weakness => (
-                                        <div key={weakness} className="p-3 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-between">
-                                            <div className="flex items-center gap-3"><Target className="w-4 h-4 text-blue-500" /><span className="text-sm font-bold text-white max-w-[120px] truncate">{weakness}</span></div>
-                                            <button className="text-xs font-bold text-blue-400 hover:underline">Assign Drill</button>
-                                        </div>
-                                    ))}
-                                </div>
-                            ) : <div className="text-center py-8 text-zinc-500 text-sm">Tech Mastery Achieved.</div>}
-                        </div>
-                    </div>
-
-                    {/* Tactical */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-zinc-900/50 border border-white/5 p-6 rounded-3xl relative overflow-hidden">
-                            <div className="flex justify-between items-center mb-4 relative z-10">
-                                <div>
-                                    <h3 className="text-lg font-black text-white">{t('dashboard.tactical_iq')}</h3>
-                                    <p className="text-xs font-medium text-zinc-500">{t('dashboard.coach_eval_match')}</p>
-                                </div>
-                                <div className="flex gap-2">
-                                    <button onClick={() => setShowTacEvalModal(true)} className="bg-purple-600/20 text-purple-500 p-2 rounded-xl border border-purple-500/20"><BrainCircuit className="w-4 h-4" /></button>
-                                    <button onClick={() => setShowMatchModal(true)} className="bg-green-600/20 text-green-500 p-2 rounded-xl border border-green-500/20"><Trophy className="w-4 h-4" /></button>
-                                    <button onClick={() => setShowGPSModal(true)} className="bg-emerald-600/20 text-emerald-500 p-2 rounded-xl border border-emerald-500/20"><Map className="w-4 h-4" /></button>
-                                </div>
-                            </div>
-                            <TacticalRadar />
-                        </div>
-                        {/* Placeholder for Tactical Weakness or Match Log Summary if needed, or just fill with stats */}
-                        <div className="bg-zinc-900/50 border border-white/5 p-6 rounded-3xl flex flex-col justify-center items-center">
-                            <div className='text-zinc-500 text-sm font-medium text-center' dangerouslySetInnerHTML={{ __html: t('dashboard.game_intelligence_overview') }}></div>
-                        </div>
-                    </div>
-
-                    {/* Mental */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="bg-zinc-900/50 border border-white/5 p-6 rounded-3xl relative overflow-hidden">
-                            <div className="flex justify-between items-center mb-4 relative z-10">
-                                <div>
-                                    <h3 className="text-lg font-black text-white">{t('dashboard.mindset')}</h3>
-                                    <p className="text-xs font-medium text-zinc-500">{t('dashboard.psychology_focus')}</p>
-                                </div>
-                                <button onClick={() => setShowMentalModal(true)} className="bg-amber-600/20 text-amber-500 p-2 rounded-xl border border-amber-500/20"><Brain className="w-4 h-4" /></button>
-                            </div>
-                            <MentalRadar />
-                        </div>
-                        <div className="bg-zinc-900/50 border border-white/5 p-6 rounded-3xl">
-                            <h3 className="text-lg font-black text-white mb-6">{t('dashboard.psych_profile')}</h3>
-                            <div className="flex items-center justify-between mb-8">
-                                <div className="text-center">
-                                    <div className="text-2xl font-black text-white">{mentalProfile.selfScore}</div>
-                                    <div className="text-[10px] font-bold text-zinc-500 uppercase">Self</div>
-                                </div>
-                                <div className="h-px bg-white/10 flex-1 mx-4"></div>
-                                <div className="text-center">
-                                    <div className="text-2xl font-black text-white">{mentalProfile.coachScore}</div>
-                                    <div className="text-[10px] font-bold text-zinc-500 uppercase">Coach</div>
-                                </div>
-                            </div>
-                            {mentalProfile.gapAnalysis.hasGap ? (
-                                <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20 mb-4">
-                                    <div className="flex items-center gap-3 mb-2"><AlertCircle className="w-5 h-5 text-orange-500" /><h4 className="font-bold text-white text-sm">{t('dashboard.gap_detected')}</h4></div>
-                                    <p className="text-xs text-zinc-400">{t('dashboard.blind_spots')}: {mentalProfile.gapAnalysis.blindSpots.join(', ')}</p>
-                                </div>
-                            ) : (
-                                <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 mb-4">
-                                    <div className="flex items-center gap-3"><Brain className="w-5 h-5 text-green-500" /><h4 className="font-bold text-white text-sm">{t('dashboard.aligned')}</h4></div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
+                    <div className="h-px flex-1 mx-8 bg-gradient-to-r from-white/5 via-white/5 to-transparent"></div>
                 </div>
 
-                {/* RIGHT COLUMN (1/3): UTILITIES */}
-                <div className="space-y-6">
-                    {/* Today's Status */}
-                    <div className="relative overflow-hidden rounded-3xl bg-primary text-white p-6 shadow-xl shadow-primary/10">
-                        <div className="relative z-10 flex justify-between items-start">
-                            <div>
-                                <div className="flex items-center gap-2 mb-2 opacity-90">
-                                    <Calendar className="w-4 h-4" />
-                                    <span className="text-xs font-bold uppercase tracking-wider">{t('upcoming.today')} • 16:30</span>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-4">
+                    <div className="lg:col-span-2 space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <InjuryDetectionDashboard />
+                            <RecoveryModule />
+                        </div>
+                        <NutritionModule />
+                    </div>
+
+                    <div className="space-y-6">
+                        {/* Today's Schedule Card */}
+                        <GlassCard
+                            title={t('upcoming.today')}
+                            subtitle="16:30 • Academy Field A"
+                            icon={Calendar}
+                            variant="primary"
+                        >
+                            <div className="space-y-6 py-2">
+                                <div>
+                                    <h3 className="text-3xl font-black text-white italic leading-tight tracking-tighter uppercase">{t('dashboard.team_training')}</h3>
+                                    <p className="text-sm text-primary font-black uppercase tracking-tight mt-1 opacity-80">{t('dashboard.training_details')}</p>
                                 </div>
-                                <h3 className="text-2xl font-black leading-tight mb-1">{t('dashboard.team_training')}</h3>
-                                <p className="text-sm opacity-90 font-medium">{t('dashboard.training_details')}</p>
+                                <div className="flex items-center gap-4 p-4 bg-white/5 rounded-2xl border border-white/5">
+                                    <div className="p-3 bg-zinc-800 rounded-xl">
+                                        <Activity className="w-6 h-6 text-primary" />
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] text-zinc-500 uppercase font-black">{t('dashboard.weekly_load')}</div>
+                                        <div className="text-lg font-black text-white italic uppercase">{t('dashboard.high')} <span className="text-primary text-xs ml-1">+12%</span></div>
+                                    </div>
+                                </div>
+                                <button className="w-full py-4 bg-primary/10 border border-primary/20 text-primary rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-primary/20 transition-all">
+                                    {t('dashboard.view_session_plan')}
+                                </button>
                             </div>
-                            <div className="bg-white/20 p-3 rounded-2xl backdrop-blur-sm">
-                                <Activity className="w-6 h-6 text-white" />
-                            </div>
-                        </div>
-                    </div>
+                        </GlassCard>
 
-                    {/* Stats Tiles */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-zinc-900/50 border border-white/5 p-5 rounded-3xl">
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="p-2 bg-blue-500/10 rounded-xl"><TrendingUp className="w-5 h-5 text-blue-400" /></div>
-                                <span className="text-xs font-bold text-green-400">+12%</span>
-                            </div>
+                        {/* Recent Streak Tile */}
+                        <div className="bg-zinc-900/50 border border-white/5 p-6 rounded-[32px] flex items-center justify-between group hover:border-amber-500/20 transition-all">
                             <div>
-                                <div className="text-2xl font-black text-white">{t('dashboard.high')}</div>
-                                <div className="text-xs text-zinc-500 font-medium">{t('dashboard.weekly_load')}</div>
+                                <div className="text-[10px] text-zinc-500 uppercase font-black mb-1">{t('dashboard.streak')}</div>
+                                <div className="text-3xl font-black text-white italic">{t('dashboard.day_count', { count: 3 })}</div>
+                                <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-wide mt-1">{t('dashboard.keep_it_up')}</p>
                             </div>
-                        </div>
-                        <div className="bg-zinc-900/50 border border-white/5 p-5 rounded-3xl">
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="p-2 bg-amber-500/10 rounded-xl"><Trophy className="w-5 h-5 text-amber-400" /></div>
-                                <span className="text-xs font-bold text-white">{t('dashboard.day_count', { count: 3 })}</span>
-                            </div>
-                            <div>
-                                <div className="text-2xl font-black text-white">{t('dashboard.streak')}</div>
-                                <div className="text-xs text-zinc-500 font-medium">{t('dashboard.keep_it_up')}</div>
+                            <div className="p-4 bg-amber-500/10 rounded-2xl group-hover:scale-110 transition-transform">
+                                <Trophy className="w-8 h-8 text-amber-500" />
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
 
-                    {/* Coach Motivation */}
-                    <div className="bg-zinc-900 border border-white/5 p-6 rounded-3xl relative overflow-hidden">
-                        <div className="flex gap-4 relative z-10">
-                            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/10 shrink-0 flex items-center justify-center">
-                                <span className="text-lg">📣</span>
-                            </div>
-                            <div>
-                                <h4 className="text-white font-bold text-sm mb-1">{t('dashboard.coach_focus')}</h4>
-                                <p className="text-zinc-400 text-sm leading-relaxed">
-                                    <Trans i18nKey="dashboard.coach_message" components={[<span className="text-primary font-bold" />]} />
-                                </p>
-                            </div>
+            {/* --- SECTION: PERFORMANCE ENGINES --- */}
+            <section className="space-y-6">
+                <div className="flex items-center justify-between px-6">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2.5 bg-primary/10 rounded-2xl">
+                            <Zap className="w-5 h-5 text-primary" />
+                        </div>
+                        <div>
+                            <h2 className="text-xl font-black text-white italic uppercase tracking-tight">{t('dashboard.performance_engines')}</h2>
+                            <p className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">{t('dashboard.physical_technical_tactical')}</p>
+                        </div>
+                    </div>
+                    <div className="h-px flex-1 mx-8 bg-gradient-to-r from-white/5 via-white/5 to-transparent"></div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4">
+                    {/* PHYSICAL ENGINE */}
+                    <div className="space-y-6">
+                        <BioCard profile={bioProfile} onUpdateClick={() => setShowGrowthModal(true)} />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <GlassCard
+                                title={t('dashboard.physical_engine')}
+                                icon={Dumbbell}
+                                subtitle={maturityStatus === 'late' ? t('dashboard.late_bloomer') : t('dashboard.on_track')}
+                                headerAction={
+                                    <button onClick={() => setShowTestModal(true)} className="p-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-400 rounded-xl transition-colors">
+                                        <Dumbbell className="w-4 h-4" />
+                                    </button>
+                                }
+                            >
+                                <PhysicalRadar />
+                            </GlassCard>
+                            <GlassCard
+                                title={t('dashboard.focus_areas')}
+                                icon={AlertTriangle}
+                                variant="muted"
+                            >
+                                {weaknesses.length > 0 ? (
+                                    <div className="space-y-3">
+                                        {weaknesses.map(weakness => (
+                                            <div key={weakness} className="p-4 bg-red-500/5 border border-red-500/20 rounded-2xl flex items-center justify-between group hover:bg-red-500/10 transition-all">
+                                                <div className="flex items-center gap-3">
+                                                    <AlertTriangle className="w-4 h-4 text-red-500" />
+                                                    <span className="text-xs font-black text-white italic uppercase">{weakness}</span>
+                                                </div>
+                                                <button className="text-[10px] font-black text-red-500 hover:underline uppercase tracking-widest">{t('dashboard.view_drills')}</button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="flex flex-col items-center justify-center py-12 text-center">
+                                        <div className="p-3 bg-zinc-800 rounded-xl mb-3"><TrendingUp className="w-6 h-6 text-zinc-600" /></div>
+                                        <div className="text-xs font-black text-zinc-500 uppercase">{t('dashboard.no_weaknesses')}</div>
+                                    </div>
+                                )}
+                            </GlassCard>
                         </div>
                     </div>
 
-                    {/* Debug / Toggles */}
-                    <div className="p-4 bg-zinc-900/30 rounded-3xl border border-white/5">
-                        <div className="text-[10px] text-zinc-500 font-bold uppercase mb-2">Dev Controls</div>
-                        <div className="flex flex-wrap gap-2">
-                            <button onClick={() => setMaturityStatus('late')} className="px-2 py-1 bg-zinc-800 rounded text-xs">Bio: Late</button>
-                            <button onClick={() => setPosition('ATT')} className="px-2 py-1 bg-zinc-800 rounded text-xs">Pos: ATT</button>
+                    {/* INTELLIGENCE HUB (Technical/Tactical/Mental) */}
+                    <div className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* TECHNICAL */}
+                            <GlassCard
+                                title={t('dashboard.technical_intelligence')}
+                                icon={Target}
+                                subtitle={`${t('dashboard.positional')}: ${position}`}
+                                headerAction={
+                                    <button onClick={() => setShowTechModal(true)} className="p-2 bg-primary/10 text-primary rounded-xl transition-colors">
+                                        <Target className="w-4 h-4" />
+                                    </button>
+                                }
+                            >
+                                <TechnicalRadar />
+                            </GlassCard>
+
+                            {/* TACTICAL */}
+                            <GlassCard
+                                title={t('dashboard.tactical_iq')}
+                                icon={BrainCircuit}
+                                headerAction={
+                                    <div className="flex gap-2">
+                                        <button onClick={() => setShowTacEvalModal(true)} className="p-2 bg-purple-500/10 text-purple-400 rounded-xl border border-purple-500/20 hover:bg-purple-500/20 transition-all"><BrainCircuit className="w-4 h-4" /></button>
+                                        <button onClick={() => setShowMatchModal(true)} className="p-2 bg-emerald-500/10 text-emerald-400 rounded-xl border border-emerald-500/20 hover:bg-emerald-500/20 transition-all"><Trophy className="w-4 h-4" /></button>
+                                        <button onClick={() => setShowGPSModal(true)} className="p-2 bg-blue-500/10 text-blue-400 rounded-xl border border-blue-500/20 hover:bg-blue-500/20 transition-all"><Map className="w-4 h-4" /></button>
+                                    </div>
+                                }
+                            >
+                                <TacticalRadar />
+                            </GlassCard>
+
+                            {/* MENTAL */}
+                            <GlassCard
+                                title={t('dashboard.mindset')}
+                                icon={Brain}
+                                headerAction={
+                                    <button onClick={() => setShowMentalModal(true)} className="p-2 bg-amber-500/10 text-amber-500 rounded-xl border border-amber-500/20 hover:bg-amber-500/20 transition-all"><Brain className="w-4 h-4" /></button>
+                                }
+                            >
+                                <MentalRadar />
+                            </GlassCard>
+
+                            {/* MENTAL GAP ANALYSIS */}
+                            <GlassCard
+                                title={t('dashboard.psych_profile')}
+                                variant="muted"
+                            >
+                                <div className="flex items-center justify-between mb-8 px-4">
+                                    <div className="text-center">
+                                        <div className="text-3xl font-black text-white italic">{mentalProfile.selfScore}</div>
+                                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mt-1">Self</div>
+                                    </div>
+                                    <div className="h-px bg-white/5 flex-1 mx-6"></div>
+                                    <div className="text-center">
+                                        <div className="text-3xl font-black text-white italic">{mentalProfile.coachScore}</div>
+                                        <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mt-1">Coach</div>
+                                    </div>
+                                </div>
+                                {mentalProfile.gapAnalysis.hasGap ? (
+                                    <div className="p-5 rounded-2xl bg-amber-500/5 border border-amber-500/20">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <div className="p-1.5 bg-amber-500/20 rounded-lg"><AlertCircle className="w-4 h-4 text-amber-500" /></div>
+                                            <h4 className="font-black text-white text-[10px] uppercase tracking-widest">{t('dashboard.gap_detected')}</h4>
+                                        </div>
+                                        <p className="text-xs text-zinc-500 font-bold uppercase tracking-tight ml-8">{t('dashboard.blind_spots')}: <span className="text-zinc-300">{mentalProfile.gapAnalysis.blindSpots.join(', ')}</span></p>
+                                    </div>
+                                ) : (
+                                    <div className="p-5 rounded-2xl bg-primary/5 border border-primary/20 flex items-center gap-4">
+                                        <div className="p-2 bg-primary/20 rounded-xl"><Brain className="w-5 h-5 text-primary" /></div>
+                                        <h4 className="font-black text-white text-[10px] uppercase tracking-widest">{t('dashboard.aligned')}</h4>
+                                    </div>
+                                )}
+                            </GlassCard>
                         </div>
                     </div>
+                </div>
+            </section>
 
+            {/* --- SECTION: KNOWLEDGE HUB --- */}
+            <section className="space-y-6">
+                <div className="flex items-center justify-between px-6">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2.5 bg-zinc-800 rounded-2xl">
+                            <GraduationCap className="w-5 h-5 text-zinc-400" />
+                        </div>
+                        <div>
+                            <h2 className="text-xl font-black text-white italic uppercase tracking-tight">{t('dashboard.knowledge_hub')}</h2>
+                            <p className="text-[10px] text-zinc-500 font-black uppercase tracking-widest">{t('dashboard.education_and_insights')}</p>
+                        </div>
+                    </div>
+                    <div className="h-px flex-1 mx-8 bg-gradient-to-r from-white/5 via-white/5 to-transparent"></div>
+                </div>
+
+                <div className="px-4">
+                    <EducationModule />
+                </div>
+            </section>
+
+            {/* COACH MOTIVATION BOTTOM BAR */}
+            <div className="px-4">
+                <div className="bg-zinc-900 border border-white/5 p-8 rounded-[40px] relative overflow-hidden group hover:border-primary/20 transition-all">
+                    <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-all"></div>
+                    <div className="flex gap-8 relative z-10 items-center">
+                        <div className="w-16 h-16 rounded-[28px] bg-gradient-to-br from-zinc-800 to-zinc-900 border border-white/10 shrink-0 flex items-center justify-center text-2xl shadow-2xl">
+                            📣
+                        </div>
+                        <div>
+                            <h4 className="text-primary font-black text-[10px] mb-2 uppercase tracking-[0.2em] italic">{t('dashboard.coach_focus')}</h4>
+                            <p className="text-zinc-200 text-lg leading-relaxed font-black italic uppercase tracking-tight">
+                                <Trans i18nKey="dashboard.coach_message" components={[<span className="text-primary" />]} />
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
+            {/* DEV CONTROLS */}
+            <div className="px-4">
+                <div className="p-6 bg-zinc-950/50 rounded-[32px] border border-white/5 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                        <div className="text-[10px] text-zinc-600 font-black uppercase tracking-[0.3em]">Developer Engine</div>
+                        <div className="flex gap-2">
+                            <button onClick={() => setMaturityStatus('late')} className="px-4 py-2 bg-zinc-900 rounded-xl text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-white transition-colors border border-white/5">Bio: Late</button>
+                            <button onClick={() => setPosition('ATT')} className="px-4 py-2 bg-zinc-900 rounded-xl text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-white transition-colors border border-white/5">Pos: ATT</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

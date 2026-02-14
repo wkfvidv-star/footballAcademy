@@ -93,6 +93,15 @@ export const BioEngine = {
             maturityOffsetYears: Math.round(maturityOffsetYears * 10) / 10,
             bioBand,
             maturityStatus,
+            physiological: {
+                restingHR: measurement.restingHR || 60,
+                hrv: measurement.hrv || 70,
+                bloodPressure: measurement.bloodPressure
+                    ? `${measurement.bloodPressure.systolic}/${measurement.bloodPressure.diastolic}`
+                    : '110/70',
+                bodyFatPercentage: measurement.bodyFatPercentage || 12,
+                vo2Max: measurement.vo2Max || 50,
+            },
             lastUpdated: new Date().toISOString()
         };
     }

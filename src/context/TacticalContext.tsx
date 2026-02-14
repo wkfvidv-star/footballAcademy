@@ -54,6 +54,9 @@ export const TacticalProvider: React.FC<{ children: ReactNode }> = ({ children }
                     totalDistance: 9.8,
                     topSpeed: 32.4,
                     sprints: 12,
+                    accelerations: 24,
+                    decelerations: 18,
+                    hiIntensityRunning: 1.2,
                     heatmap: [
                         { x: 20, y: 50, intensity: 0.8 }, { x: 25, y: 55, intensity: 0.6 },
                         { x: 50, y: 50, intensity: 0.9 }, { x: 80, y: 20, intensity: 0.7 },

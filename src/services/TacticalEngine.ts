@@ -31,6 +31,9 @@ export interface MatchStats {
         totalDistance: number; // km
         topSpeed: number; // km/h
         sprints: number; // > 25km/h
+        accelerations: number;
+        decelerations: number;
+        hiIntensityRunning: number; // km
         heatmap: { x: number; y: number; intensity: number }[];
         technicalMap?: {
             x: number;

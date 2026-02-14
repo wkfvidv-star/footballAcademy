@@ -64,6 +64,11 @@ const DRILLS_DB: TrainingDrill[] = [
         description: 'training.drill_TAC_2_desc',
         minAge: 14, maxAge: 21, positions: ['MID'], philosophy: 'POSSESSION'
     },
+    {
+        id: 'TAC_3', title: 'Decision Making: 2v1 Overloads', category: 'TACTICAL', duration: '20 min', difficulty: 'Intermediate',
+        description: 'Developing quick decision making in numerical advantage scenarios.',
+        minAge: 10, maxAge: 18, positions: ['MID', 'ATT'], philosophy: 'TRANSITION'
+    },
 
     // Mental
     {
@@ -71,15 +76,26 @@ const DRILLS_DB: TrainingDrill[] = [
         description: 'training.drill_MEN_1_desc',
         minAge: 10, maxAge: 21, positions: ['GK', 'DEF', 'MID', 'ATT']
     },
+    {
+        id: 'MEN_2', title: 'Visual Scanning Drill', category: 'PSYCHOLOGICAL', duration: '15 min', difficulty: 'Advanced',
+        description: 'Scanning the environment before receiving the ball to improve spatial awareness.',
+        minAge: 12, maxAge: 21, positions: ['MID', 'DEF']
+    },
 ];
+
+export interface TrainingPathway {
+    shortTerm: TrainingDrill[];
+    mediumTerm: TrainingDrill[];
+    longTerm: string; // Strategy description
+}
 
 export const getRecommendations = (
     metrics: PlayerMetrics,
     age: number,
     position: 'GK' | 'DEF' | 'MID' | 'ATT',
     preferredPhilosophy?: 'POSSESSION' | 'TRANSITION' | 'COUNTER_PRESS' | 'DIRECT'
-): TrainingDrill[] => {
-    // 1. Identify Weakest Pillar
+): TrainingPathway => {
+    // 1. Identify Weakest pillar
     const scores = [
         { cat: 'PHYSICAL' as const, val: metrics.physical },
         { cat: 'TECHNICAL' as const, val: metrics.technical },
@@ -89,33 +105,23 @@ export const getRecommendations = (
 
     const sorted = scores.sort((a, b) => a.val - b.val);
     const weakest = sorted[0];
-    const secondary = sorted[1];
 
-    // 2. Filter Recommendations
+    // 2. Filter logic
     const filterDrills = (category: typeof scores[0]['cat']) => {
         return DRILLS_DB.filter(d => {
             const matchesCategory = d.category === category;
             const matchesAge = age >= d.minAge && age <= d.maxAge;
             const matchesPosition = d.positions.includes(position);
-            const matchesPhilosophy = !preferredPhilosophy || !d.philosophy || d.philosophy === preferredPhilosophy;
-
-            return matchesCategory && matchesAge && matchesPosition && matchesPhilosophy;
+            return matchesCategory && matchesAge && matchesPosition;
         });
     };
 
-    let primaryRecs = filterDrills(weakest.cat);
-    let secondaryRecs = filterDrills(secondary.cat);
+    const primaryRecs = filterDrills(weakest.cat);
+    const tacticalRecs = filterDrills('TACTICAL');
 
-    // If filters are too strict, relax philosophy then position
-    if (primaryRecs.length === 0) {
-        primaryRecs = DRILLS_DB.filter(d => d.category === weakest.cat && age >= d.minAge && age <= d.maxAge);
-    }
-    if (secondaryRecs.length === 0) {
-        secondaryRecs = DRILLS_DB.filter(d => d.category === secondary.cat && age >= d.minAge && age <= d.maxAge);
-    }
-
-    return [
-        ...primaryRecs.slice(0, 2),
-        ...secondaryRecs.slice(0, 1)
-    ];
+    return {
+        shortTerm: primaryRecs.slice(0, 2),
+        mediumTerm: tacticalRecs.slice(0, 2),
+        longTerm: `Focus on improving ${weakest.cat.toLowerCase()} attributes while integrating ${position} specific tactical principles.`
+    };
 };

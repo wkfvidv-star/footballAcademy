@@ -61,27 +61,39 @@ export default function TrainingView({ onBack }: TrainingViewProps) {
             {/* Content */}
             <div className="flex-1 px-6 pb-8 space-y-8 overflow-y-auto">
 
-                {/* Priority Section */}
+                {/* Short-term Priority Section */}
                 <div>
                     <div className="flex items-center gap-2 mb-4">
                         <Target className="w-5 h-5 text-primary" />
-                        <h2 className="text-lg font-bold text-white uppercase tracking-tight">{t('training.focus_areas')}</h2>
+                        <h2 className="text-lg font-bold text-white uppercase tracking-tight">Short-term Focus</h2>
                     </div>
                     <div className="grid gap-4">
-                        {recommendations.map((drill) => (
+                        {recommendations.shortTerm.map((drill) => (
                             <TrainingCard key={drill.id} drill={drill} highlight={true} />
                         ))}
                     </div>
                 </div>
 
-                {/* General Section Placeholder */}
+                {/* Medium-term Development Section */}
                 <div>
-                    <div className="flex items-center gap-2 mb-4 font-rtl">
-                        <Dumbbell className="w-5 h-5 text-zinc-500" />
-                        <h2 className="text-lg font-bold text-zinc-400 uppercase tracking-tight">{t('training.general')}</h2>
+                    <div className="flex items-center gap-2 mb-4">
+                        <Dumbbell className="w-5 h-5 text-secondary" />
+                        <h2 className="text-lg font-bold text-white uppercase tracking-tight">Medium-term Development</h2>
                     </div>
-                    <div className="bg-card border border-white/5 rounded-2xl p-6 text-center">
-                        <p className="text-zinc-500 text-sm">{t('training.unlock_message')}</p>
+                    <div className="grid gap-4">
+                        {recommendations.mediumTerm.map((drill) => (
+                            <TrainingCard key={drill.id} drill={drill} highlight={false} />
+                        ))}
+                    </div>
+                </div>
+
+                {/* Long-term Strategy */}
+                <div>
+                    <div className="flex items-center gap-2 mb-4">
+                        <h2 className="text-lg font-bold text-zinc-400 uppercase tracking-tight">Long-term Strategy</h2>
+                    </div>
+                    <div className="bg-card border border-white/5 rounded-2xl p-6">
+                        <p className="text-zinc-300 text-sm leading-relaxed italic">"{recommendations.longTerm}"</p>
                     </div>
                 </div>
 

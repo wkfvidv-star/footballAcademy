@@ -35,7 +35,17 @@
         "squad": "الفريق",
         "stats": "الإحصائيات",
         "settings": "الإعدادات",
-        "logout": "تسجيل الخروج"
+        "logout": "تسجيل الخروج",
+        "home": "الرئيسية",
+        "assessment": "التقييم",
+        "nutrition": "التغذية",
+        "recovery": "الاستشفاء",
+        "injury": "الإصابات",
+        "culture": "الثقافة",
+        "general": "عام",
+        "management": "الإدارة",
+        "analysis": "التحليل",
+        "programs": "البرامج"
     },
     "sidebar": {
         "filters": "التصفية",
@@ -118,30 +128,6 @@
         "pending": "التقييم معلق",
         "gathering": "جاري جمع البيانات..."
     },
-    "ai_risks": {
-        "high_fatigue": "تم اكتشاف إجهاد عالٍ. قلل حمل التدريب.",
-        "mental_dip": "المرونة الذهنية منخفضة. راقب الإرهاق.",
-        "disconnect": "انفصال حاد بين واقع اللاعب والمدرب."
-    },
-    "drills": {
-        "mobility": "تمارين الحركية",
-        "yoga": "يوغا / استطالة",
-        "film": "دراسة الفيديو",
-        "activation_speed": "تنشيط السرعة",
-        "activation_power": "تنشيط القوة",
-        "tech_passing": "تمارين التمرير",
-        "maintain_mid": "الحفاظ على المستوى التقني – وسط",
-        "maintain_fwd": "الحفاظ على المستوى التقني – هجوم",
-        "maintain_def": "الحفاظ على المستوى التقني – دفاع",
-        "tactical_fundamentals": "الأساسيات التكتيكية",
-        "advanced_positional": "اللعب التموضعي المتقدم"
-    },
-    "training_plan": {
-        "active_recovery": "استشفاء نشط",
-        "development": "التطوير والتحسين",
-        "reasoning_recovery": "خطر إصابة أو إجهاد عالٍ. الأولوية للاستشفاء.",
-        "reasoning_development": "ضوء أخضر للتطوير عالي الكثافة. ركز على السمات الأقل تصنيفاً."
-    },
     "auth": {
         "signin": "تسجيل الدخول",
         "signin_desc": "سجل دخولك لمتابعة أدائك",
@@ -189,7 +175,15 @@
         "transition": "التحول",
         "decision": "القرار",
         "space": "المساحة",
-        "shape": "الشكل"
+        "shape": "الشكل",
+        "confidence": "الثقة",
+        "focus": "التركيز",
+        "emotional_control": "التحكم",
+        "motivation": "التحفيز",
+        "discipline": "الانضباط",
+        "resilience": "المرونة",
+        "coachability": "القابلية",
+        "mindset": "العقلية"
     },
     "actions": {
         "start": "بدء التقييم",
@@ -273,6 +267,29 @@
         "test_PSY_S_02": "التركيز خلال التدريب",
         "test_TAC_S_01": "فهم دوري في الملعب"
     },
+    "assessment": {
+        "title": "تقييم الأداء",
+        "subtitle": "تحليل عميق لمستوى لياقتك البدنية وذكائك الذهني",
+        "tabs": {
+            "all": "نظرة عامة",
+            "physical": "بدني",
+            "technical": "تقني",
+            "tactical": "تكتيكي",
+            "mental": "ذهني"
+        },
+        "maturity_desc": "مرحلة التطور البيولوجي بناءً على حساب PHV.",
+        "dominant_pos": "المركز المهيمن",
+        "pos_desc": "تخصص الانتشار التكتيكي الحالي.",
+        "update_pos": "تحديث المركز",
+        "weakness_log": "سجل نقاط الضعف",
+        "positional_insights": "رؤى تمركزية",
+        "positional_msg": "مقاييس تسديد الكرة لديك في النسبة المئوية ٨٥ لمركز الـ {{pos}}. التركيز على التمرن بالقدم الضعيفة سيرفع درجتك التقنية لـ ٩٠+.",
+        "tactical_footprint": "البصمة التكتيكية",
+        "tactical_msg": "تمركز استثنائي في مراحل التحول. توصية: ادرس \"استغلال المساحات النصفية\" في مركز المعرفة للحصول على ميزة تكتيكية متطورة.",
+        "self_eval": "تقييم ذاتي",
+        "coach_eval": "تقييم المدرب",
+        "alignment_verified": "تم التحقق من التوافق"
+    },
     "training": {
         "description": "مخصصة لك بناءً على أدائك الأخير.",
         "philosophy": "فلسفة النادي",
@@ -304,8 +321,195 @@
         "drill_MEN_1_title": "التخيل والتنفس",
         "drill_MEN_1_desc": "روتين ما قبل المباراة لتهدئة الأعصاب وزيادة التركيز"
     },
+    "training_prog": {
+        "title": "برنامج التدريب",
+        "subtitle": "طريقك نحو الأداء النخبة",
+        "log_session": "سجل جلسة جديدة",
+        "log_test": "سجل بيانات الاختبار",
+        "warmup_title": "بروتوكول الإحماء",
+        "warmup_subtitle": "١٥ دقيقة • ما قبل الجلسة",
+        "warmup_steps": {
+            "stretching": "إطالات ديناميكية",
+            "activation": "تنشيط العضلات",
+            "ball_mastery": "إتقان الكرة (كويرفر)"
+        },
+        "video": "فيديو",
+        "mastery_level": "مستوى الإتقان: {{percent}}%",
+        "view_all_protocols": "عرض جميع البروتوكولات",
+        "drills": {
+            "finishing": "الإنهاء تحت الضغط",
+            "reaction": "تمارين سرعة رد الفعل",
+            "defensive": "التمركز الدفاعي"
+        }
+    },
+    "nutrition_hub": {
+        "title": "مركز التغذية",
+        "subtitle": "زود محركك بالطاقة لتحقيق أقصى قدر من الإنتاج",
+        "pre_match_fuel": "وقود ما قبل المباراة",
+        "pre_match_desc": "تعتبر كمية الكربوهيدرات العالية (٧-١٠ جم / كجم من وزن الجسم) ضرورية قبل ٢٤ ساعة من يوم المباراة.",
+        "meals": {
+            "oatmeal": "دقيق الشوفان والفواكه",
+            "pasta": "باستا مع الدجاج",
+            "energy_bar": "لوح طاقة"
+        },
+        "hydration": "حالة الترطيب",
+        "optimal_range": "النطاق الأمثل"
+    },
+    "recovery_center": {
+        "title": "مركز الاستشفاء",
+        "subtitle": "تجديد أسرع، أداء أفضل",
+        "sleep_analysis": "تحليل النوم",
+        "deep_sleep_score": "درجة النوم العميق: ٩٢",
+        "ai_insight": "رؤية الذكاء الاصطناعي",
+        "hrv_insight": "معدل ضربات القلب الخاص بك ارتفع بنسبة ١٢٪ بعد بروتوكول الراحة بالأمس. أنت مستعد للتدريب عالي الكثافة.",
+        "cold_plunge": "غطس بارد",
+        "oxygen_hub": "مركز الأكسجين",
+        "high_flow": "تدفق عالي"
+    },
+    "injury_monitoring": {
+        "title": "مراقبة الإصابات",
+        "subtitle": "ابق في الملعب مع الوقاية الاستباقية",
+        "body_map": "خريطة الجسم التفاعلية",
+        "scan_pending": "تحليل المسح ثلاثي الأبعاد قيد الانتظار",
+        "start_scan": "بدء المسح الافتراضي",
+        "zones_of_concern": "مناطق القلق",
+        "hamstring": "أوتار الركبة اليسرى",
+        "ankle": "الكاحل الأيمن",
+        "high_risk": "خطر عالي",
+        "stable": "مستقر"
+    },
+    "knowledge_hub": {
+        "title": "مركز المعرفة",
+        "subtitle": "الميزة الذهنية: القواعد، الثقافة والنمو",
+        "weekly_focus": "تركيز الأسبوع",
+        "var_mastery": "إتقان تحديثات الفيفا للـ VAR",
+        "var_desc": "فهم أحدث التغييرات في القواعد المتعلقة بتمركز كرة اليد وتداخل التسلل.",
+        "start_module": "بدء الوحدة",
+        "radiant_culture": "ثقافة راديانت",
+        "club_philosophy": "فلسفة النادي",
+        "dressing_room": "روح غرفة الملابس",
+        "social_resp": "المسؤولية الاجتماعية"
+    },
+    "coach_general": {
+        "title": "نظرة عامة على الفريق",
+        "subtitle": "محرك الأداء • وحدة البيانات الحية",
+        "cumulative_kpi": "مؤشر الأداء التراكمي للفريق",
+        "high_injury_risk": "خطر إصابة عالٍ",
+        "injury_risk_subtext": "{{name}} (ACWR: {{acwr}})"
+    },
+    "coach_management": {
+        "title": "إدارة اللاعبين",
+        "subtitle": "التحكم في القائمة • توصيف الأداء",
+        "search_placeholder": "البحث في الفريق...",
+        "add_new_player": "إضافة لاعب جديد",
+        "active_roster": "القائمة النشطة ({{count}})",
+        "available": "متاح",
+        "at_risk": "في خطر",
+        "fitness": "اللياقة",
+        "status": "الحالة",
+        "peak": "ذروة",
+        "ready": "جاهز",
+        "active": "نشط",
+        "recovering": "قيد الاستشفاء",
+        "right_foot": "القدم اليمنى",
+        "both_feet": "كلتا القدمين",
+        "squad_insights": "رؤى الفريق",
+        "top_performer": "الأفضل أداءً",
+        "score_with_trend": "الدرجة: {{score}} ({{trend}})",
+        "low_availability": "توفر منخفض",
+        "defensive_at_risk": "{{count}} لاعبين دفاعيين في خطر",
+        "export_report": "تصدير\nالتقرير",
+        "export_subtext": "تقرير PDF كامل للفريق • تحليل أسبوعي"
+    },
+    "coach_analysis": {
+        "title": "تحليل متقدم",
+        "subtitle": "ذكاء الأداء • بيانات GPS والبيانات الفنية",
+        "download_raw": "تنزيل البيانات الخام",
+        "workload_matrix": "مصفوفة عبء عمل الفريق",
+        "workload_subtext": "HSR مقابل المسافة (أسبوعي)",
+        "loading_viz": "جاري تحميل تصور البيانات المعزز...",
+        "tactical_heatmaps": "الخرائط الحرارية التكتيكية",
+        "heatmap_preview": "معاينة الخريطة الحرارية الديناميكية",
+        "launch_tech_map": "إطلاق الخريطة الفنية",
+        "kpi_correlations": "ارتباطات مؤشرات الأداء الرئيسية",
+        "correlation_insight": "تم اكتشاف ارتباط بين كفاءة النوم (+١٢٪) وحجم الركض السريع (+٨.٤٪) عبر الوحدة الدفاعية.",
+        "intensity_corr": "ارتباط الكثافة",
+        "fatigue_load_ratio": "نسبة التعب/الحمل",
+        "top_sprint_values": "أعلى قيم الركض السريع",
+        "squad_distribution": "توزيع الفريق",
+        "global_index_avg": "متوسط المؤشر العالمي"
+    },
+    "coach_programs": {
+        "title": "محرك التدريب",
+        "subtitle": "تصميم التمارين • تعيين الجلسات • الجدولة",
+        "create_program": "إنشاء برنامج",
+        "calendar_view": "عرض التقويم",
+        "intensity_label": "{{level}} الكثافة",
+        "start_live": "بدء جلسة\nمباشرة",
+        "gps_enabled": "تتبع GPS في الوقت الحقيقي مفعل",
+        "begin_log": "بدء السجل ←",
+        "assigned_today": "تم تعيينه اليوم",
+        "programs": {
+            "transitional_speed": "السرعة الانتقالية",
+            "tech_finishing": "الإنهاء الفني",
+            "defensive_blocks": "الكتل الدفاعية"
+        },
+        "units": {
+            "players_count": "{{count}} لاعبين",
+            "forward_unit": "وحدة الهجوم",
+            "entire_squad": "الفريق بأكمله"
+        }
+    },
+    "coach_injury": {
+        "title": "مراقب الإصابات",
+        "subtitle": "توفر الفريق • التنبيه لتخفيف المخاطر",
+        "full_incident_log": "سجل الحوادث الكامل",
+        "risk_heatmap": "خريطة مخاطر الفريق",
+        "fatigue_vs_load": "تعب العضلات مقابل طفرات الحمل",
+        "lower_body": "الجزء السفلي من الجسم",
+        "total_fatigue": "التعب الكلي",
+        "loading_dist": "جاري تحميل توزيع المخاطر العالمي...",
+        "high_risk_alerts": "تنبيهات المخاطر العالية",
+        "tension": "توتر",
+        "players_ready": "{{ready}}/{{total}} لاعبين جاهزون",
+        "in_recovery": "في الاستشفاء",
+        "long_term": "طويل الأمد",
+        "medical_insights": "رؤى طبية",
+        "medical_insight_desc": "انخفض التعب العام للفريق بنسبة ١٤٪ منذ تحويل جلسات التدريب إلى الساعة ١٠:٠٠ صباحاً. تظل كفاءة النوم هي العائق الرئيسي لـ ٣ لاعبين."
+    },
+    "coach_nutrition": {
+        "title": "تغذية الفريق",
+        "subtitle": "الالتزام الغذائي • تحليل التمثيل الغذائي للمجموعة",
+        "modify_meal_plan": "تعديل خطة وجبات الفريق",
+        "meal_adherence": "الالتزام بسجل الوجبات",
+        "actual_vs_target": "الفعلي مقابل المستهدف (أسبوعي)",
+        "loading_compliance": "جاري تحميل مقاييس امتثال الفريق...",
+        "sup_compliance": "الالتزام بالمكملات",
+        "vitamin_alert": "تنبيه الفيتامينات",
+        "vitamin_alert_desc": "تم اكتشاف مستويات منخفضة من فيتامين D لدى ٥ أعضاء من الفريق. نوصي بتعديل بروتوكول المكملات الفوري.",
+        "view_affected": "عرض اللاعبين المتأثرين ←",
+        "macro_mix": "مزيج الماكرو للفريق",
+        "meal_timing": "توقيت الوجبات",
+        "nutrients": {
+            "protein": "بروتين",
+            "carbs": "كربوهيدرات",
+            "fats": "دهون",
+            "fiber": "ألياف"
+        },
+        "supplements": {
+            "whey": "بروتين مصل اللبن",
+            "magnesium": "المغنيسيوم",
+            "omega3": "أوميجا-٣"
+        },
+        "timing": {
+            "pre_session": "قبل الجلسة",
+            "post_session": "بعد الجلسة"
+        }
+    },
     "header": {
-        "role": "لاعب أكاديمية"
+        "role": "لاعب أكاديمية",
+        "player": "لاعب",
+        "coach": "مدرب"
     },
     "dashboard": {
         "physical_engine": "المحرك البدني",
@@ -345,7 +549,21 @@
         "coach_message": "عمل رائع على قدرة التحمل. لنركز على <0>اللمسة الأولى</0> تحت الضغط اليوم.",
         "high": "عال",
         "day_count": "{{count}} يوم",
-        "day_count_plural": "{{count}} أيام"
+        "day_count_plural": "{{count}} أيام",
+        "view_session_plan": "عرض خطة الجلسة",
+        "log_activity": "سجل النشاط",
+        "daily_checkin": "تسجيل يومي"
+    },
+    "alerts": {
+        "critical_alert": "تنبيه حرج",
+        "performance": "الأداء",
+        "coach_note": "ملاحظة المدرب",
+        "high_hamstring_risk": "خطر عالي في أوتار الركبة",
+        "sleep_efficiency_down": "انخفاض كفاءة النوم",
+        "review_var_updates": "مراجعة تحديثات الـ VAR"
+    },
+    "schedule": {
+        "training_time_location": "١٦:٣٠ • ملعب الأكاديمية (أ)"
     },
     "progress": {
         "title": "تقدمي",
@@ -510,7 +728,8 @@
             "performance_drop": "انخفاض الأداء",
             "recent_activity": "النشاط الأخير",
             "eval_completed": "اكتمل التقييم",
-            "eval_subtext": "المدرب {{name}} • منذ {{time}}"
+            "eval_subtext": "المدرب {{name}} • منذ {{time}}",
+            "high_injury_risk_label": "خطر إصابة عال"
         },
         "sidebar": {
             "evaluations": "التقييمات",
@@ -545,7 +764,8 @@
             "squad_vs_academy": "الفريق مقابل متوسط الأكاديمية",
             "top_performer": "الأفضل أداءً",
             "most_improved": "الأكثر تحسناً",
-            "injury_rate": "معدل الإصابة"
+            "injury_rate": "معدل الإصابة",
+            "academy_avg": "متوسط الأكاديمية"
         },
         "player_profile": {
             "title": "ملف اللاعب",
@@ -677,6 +897,172 @@
             "stressManagement": "إدارة الضغوط",
             "coachability": "القابلية للتدريب",
             "competitiveness": "التنافسية"
+        }
+    },
+    "bio": {
+        "profile": "الملف البيولوجي",
+        "lab": "المختبر (المحرك الحيوي)",
+        "predicted_adult": "الطول المتوقع للبالغ",
+        "maturity_status": "حالة النضج",
+        "bloomer": "بلوغ",
+        "current_progress": "التقدم الحالي",
+        "phase": "مرحلة النطاق الحيوي",
+        "pre_phv": "ما قبل طفرة النمو",
+        "circa_phv": "طفرة النمو (PHV)",
+        "post_phv": "مرحلة النضج",
+        "add_data": "+ إضافة بيانات",
+        "update": "تحديث",
+        "no_data": "لا تتوفر بيانات نمو. أضف قياسات لفتح النطاق الحيوي.",
+        "early": "مبكر",
+        "late": "متأخر",
+        "on_time": "في وقته",
+        "physiological_metrics": "المقاييس الفسيولوجية",
+        "resting_hr": "نبض القلب الراحة",
+        "hrv": "تغير ضربات القلب",
+        "blood_pressure": "ضغط الدم",
+        "body_fat": "نسبة الدهون",
+        "vo2_max": "السعة الهوائية (VO2)"
+    },
+    "gps": {
+        "total_distance": "المسافة الكلية",
+        "top_speed": "السرعة القصوى",
+        "sprints": "سبرنتات",
+        "accels_decels": "تسارع / تباطؤ",
+        "hi_running": "جري عالي الشدة"
+    },
+    "dashboard_new": {
+        "recovery_protocol": "بروتوكول الاستشفاء",
+        "nutrition_focus": "التركيز الغذائي",
+        "recovery_load": "حمل الاستشفاء",
+        "fatigue_level": "مستوى الإرهاق",
+        "muscle_soreness": "آلام العضلات",
+        "optimal": "مثالي",
+        "warning": "تحذير",
+        "critical": "حرج"
+    },
+    "recovery": {
+        "strategy": {
+            "aggressive_regeneration": "تجديد نشاط قوي",
+            "standard_recovery": "استشفاء قياسي",
+            "maintenance": "صيانة"
+        },
+        "activity": {
+            "cold_water": "غطس في ماء بارد",
+            "cold_water_desc": "١٠-١٢ درجة مئوية لتقليل الالتهاب.",
+            "active_walk": "مشي استشفائي نشط",
+            "active_walk_desc": "مشي خفيف لتعزيز تدفق الدم.",
+            "foam_rolling": "فوم رولينج / حركية",
+            "foam_rolling_desc": "استهداف المجموعات العضلية الرئيسية.",
+            "dynamic_stretching": "إطالات ديناميكية",
+            "dynamic_stretching_desc": "التركيز على الورك وأوتار الركبة.",
+            "contrast_showers": "حمامات متباينة",
+            "contrast_showers_desc": "التبديل بين الماء الساخن والبارد.",
+            "sleep_protocol": "بروتوكول النوم القياسي",
+            "sleep_protocol_desc": "تحسين بيئة النوم لاستشفاء عميق."
+        },
+        "nutrition": {
+            "high_protein": "بروتين عالي وأطعمة مضادة للالتهاب (أوميغا ٣)",
+            "electrolytes": "تعويض الشوارد وكربوهيدرات معتدلة",
+            "standard": "ترطيب قياسي ووجبات متوازنة"
+        }
+    },
+    "pdi_short": {
+        "physical": "بدني",
+        "technical": "تقني",
+        "tactical": "تكتي",
+        "mental": "ذهني"
+    },
+    "ai_risks": {
+        "high_fatigue": "رصد إرهاق عالي / ألم عضلي",
+        "mental_dip": "انخفاض في الحضور الذهني",
+        "disconnect": "تفاوت بين الأداء والإدراك"
+    },
+    "training_plan": {
+        "active_recovery": "استشفاء نشط",
+        "development": "تركيز تطويري",
+        "reasoning_recovery": "تم رصد حمل بدني عالي. الأولوية للتجديد لمنع الإصابة.",
+        "reasoning_development": "الحالة مثالية. استهداف نقاط ضعف محددة لتحسين مؤشر الأداء."
+    },
+    "drills": {
+        "mobility": "تمارين الحركية",
+        "yoga": "يوجا للاستشفاء",
+        "film": "دراسة الفيديو",
+        "tactical_fundamentals": "أساسيات تكتيكية",
+        "advanced_positional": "لعب تمركزي متقدم",
+        "activation_speed": "تنشيط السرعة",
+        "activation_power": "تنشيط القوة",
+        "activation_endurance": "حفاظ على التحمل",
+        "activation_agility": "سلم الرشاقة",
+        "activation_balance": "توازن وثبات",
+        "activation_reaction": "تدريب رد الفعل",
+        "tech_passing": "تمارين التمرير",
+        "tech_shooting": "تدريب التسديد",
+        "tech_dribbling": "متاهة المراوغة",
+        "tech_control": "التحكم بالكرة",
+        "tech_crossing": "تمارين العرضيات",
+        "maintain_forward": "سيناريوهات الإنهاء",
+        "maintain_midfielder": "لعب التوزيع",
+        "maintain_defender": "تمركز دفاعي",
+        "maintain_goalkeeper": "عمل ردود الفعل"
+    },
+    "nutrition_module": {
+        "title": "التغذية اليومية",
+        "calories": "سعرات",
+        "protein": "بروتين",
+        "carbs": "كربوهيدرات",
+        "fat": "دهون",
+        "insights": "رؤى غذائية",
+        "log_meal": "سجل وجبة",
+        "meal_type": "نوع الوجبة",
+        "description": "الوصف",
+        "save_meal": "حفظ الوجبة",
+        "cancel": "إلغاء",
+        "breakfast": "فطور",
+        "lunch": "غداء",
+        "dinner": "عشاء",
+        "snack": "وجبة خفيفة"
+    },
+    "education_module": {
+        "title": "المعرفة الأكاديمية",
+        "latest_updates": "آخر التحديثات",
+        "methodology": "سلط الضوء على المنهجية",
+        "read_article": "اقرأ المقال كاملاً",
+        "modules": "وحدة",
+        "categories": {
+            "laws": "قوانين اللعبة",
+            "technical": "مبادئ فنية",
+            "modern": "نماذج اللعب الحديثة",
+            "training_methods": "منهجيات التدريب",
+            "rules_2026": "قوانين IFAB 2026/27"
+        },
+        "methods": {
+            "continuous": "التدريب المستمر",
+            "interval": "التدريب الفتري",
+            "repetition": "التدريب التكراري",
+            "circuit": "التدريب الدائري"
+        }
+    },
+    "injury_module": {
+        "title": "تنبؤ الإصابة",
+        "high_risk": "خطر إصابة مرتفع",
+        "system_alert": "رصد النظام أنماط غير طبيعية للحمل/الإرهاق.",
+        "at_risk_areas": "المناطق المعرضة للخطر",
+        "acwr": "نسبة الحمل (ACWR)",
+        "fatigue": "إرهاق",
+        "level": {
+            "low": "منخفض",
+            "moderate": "متوسط",
+            "high": "مرتفع",
+            "critical": "حرج"
+        },
+        "area": {
+            "lower_body": "الجزء السفلي (فخذ/أوتار)"
+        },
+        "indicator": {
+            "acwr_high": "نسبة الحمل الحاد:المزمن مرتفعة (>1.5)",
+            "soreness_high": "تم الإبلاغ عن ألم عضلي شديد",
+            "fatigue_high": "مستويات إرهاق مرتفعة",
+            "history_hamstring": "تاريخ إصابات في أوتار الركبة"
         }
     }
 }

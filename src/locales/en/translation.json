@@ -35,7 +35,17 @@
         "squad": "Squad",
         "stats": "Statistics",
         "settings": "Settings",
-        "logout": "Logout"
+        "logout": "Logout",
+        "home": "Home",
+        "assessment": "Assessment",
+        "nutrition": "Nutrition",
+        "recovery": "Recovery",
+        "injury": "Injury",
+        "culture": "Culture",
+        "general": "General",
+        "management": "Management",
+        "analysis": "Analysis",
+        "programs": "Programs"
     },
     "sidebar": {
         "filters": "Filters",
@@ -118,30 +128,6 @@
         "pending": "Assessment Pending",
         "gathering": "Gathering data..."
     },
-    "ai_risks": {
-        "high_fatigue": "High Fatigue detected. Reduce training load.",
-        "mental_dip": "Mental resilience is low. Monitor for burnout.",
-        "disconnect": "Critical disconnect between Player and Coach reality."
-    },
-    "drills": {
-        "mobility": "Mobility Work",
-        "yoga": "Yoga / Stretching",
-        "film": "Film Study",
-        "activation_speed": "Speed Activation",
-        "activation_power": "Power Activation",
-        "tech_passing": "Passing Drills",
-        "maintain_mid": "Midfield Tech Maintenance",
-        "maintain_fwd": "Striker Tech Maintenance",
-        "maintain_def": "Defender Tech Maintenance",
-        "tactical_fundamentals": "Tactical Fundamentals",
-        "advanced_positional": "Advanced Positional Play"
-    },
-    "training_plan": {
-        "active_recovery": "Active Recovery",
-        "development": "Development & Optimization",
-        "reasoning_recovery": "High fatigue or injury risk detected. Priority is regeneration.",
-        "reasoning_development": "Green light for high-intensity development. Focus on lowest rated attributes."
-    },
     "auth": {
         "signin": "Sign In",
         "signin_desc": "Sign in to track your performance",
@@ -189,7 +175,15 @@
         "transition": "Transition",
         "decision": "Decision",
         "space": "Space",
-        "shape": "Shape"
+        "shape": "Shape",
+        "confidence": "Confidence",
+        "focus": "Focus",
+        "emotional_control": "Control",
+        "motivation": "Motivation",
+        "discipline": "Discipline",
+        "resilience": "Resilience",
+        "coachability": "Coachability",
+        "mindset": "Mindset"
     },
     "actions": {
         "start": "Start Evaluation",
@@ -237,6 +231,20 @@
         "high": "High",
         "day_count": "{{count}} Day",
         "day_count_plural": "{{count}} Days",
+        "view_session_plan": "View Session Plan",
+        "log_activity": "Log Activity",
+        "daily_checkin": "Daily Check-in",
+        "alerts": {
+            "critical_alert": "Critical Alert",
+            "performance": "Performance",
+            "coach_note": "Coach Note",
+            "high_hamstring_risk": "High Hamstring Risk",
+            "sleep_efficiency_down": "Sleep Efficiency Down",
+            "review_var_updates": "Review VAR Updates"
+        },
+        "schedule": {
+            "training_time_location": "16:30 • Academy Field A"
+        },
         "physical_engine": "Physical Engine",
         "bio_adjusted": "Bio-Adjusted.",
         "late_bloomer": "(Late Bloomer Boost)",
@@ -261,11 +269,224 @@
         "maintain_tech": "Midfield Tech Maintenance",
         "advanced_store": "Advanced Space Analysis"
     },
+    "training_prog": {
+        "title": "Training Program",
+        "subtitle": "Your road to elite performance",
+        "log_session": "Log New Session",
+        "log_test": "Log Test Data",
+        "warmup_title": "Warm-up Protocol",
+        "warmup_subtitle": "15 Minutes • Pre-Session",
+        "warmup_steps": {
+            "stretching": "Dynamic Stretching",
+            "activation": "Muscle Activation",
+            "ball_mastery": "Ball Mastery (Coerver)"
+        },
+        "video": "Video",
+        "mastery_level": "Mastery Level: {{percent}}%",
+        "view_all_protocols": "View All Protocols",
+        "drills": {
+            "finishing": "Finishing Under Pressure",
+            "reaction": "Reaction Speed Drills",
+            "defensive": "Defensive Positioning"
+        }
+    },
+    "nutrition_hub": {
+        "title": "Nutrition Hub",
+        "subtitle": "Fuel your engine for maximum output",
+        "pre_match_fuel": "Pre-Match Fuel",
+        "pre_match_desc": "High carbohydrate intake (7-10g/kg body weight) is essential 24h before matchday.",
+        "meals": {
+            "oatmeal": "Oatmeal & Fruits",
+            "pasta": "Pasta with Chicken",
+            "energy_bar": "Energy Bar"
+        },
+        "hydration": "Hydration Status",
+        "optimal_range": "Optimal Range"
+    },
+    "recovery_center": {
+        "title": "Recovery Center",
+        "subtitle": "Regenerate faster, perform better",
+        "sleep_analysis": "Sleep Analysis",
+        "deep_sleep_score": "Deep Sleep Score: 92",
+        "ai_insight": "AI Insight",
+        "hrv_insight": "Your HRV is up by 12% following yesterday's rest protocol. You are primed for high-intensity training.",
+        "cold_plunge": "Cold Plunge",
+        "oxygen_hub": "Oxygen Hub",
+        "high_flow": "High Flow"
+    },
+    "injury_monitoring": {
+        "title": "Injury Monitoring",
+        "subtitle": "Stay on the field with proactive prevention",
+        "body_map": "Interactive Body Map",
+        "scan_pending": "3D Scan Analysis Pending",
+        "start_scan": "Start Virtual Scan",
+        "zones_of_concern": "Zones of Concern",
+        "hamstring": "Left Hamstring",
+        "ankle": "Right Ankle",
+        "high_risk": "High Risk",
+        "stable": "Stable"
+    },
+    "knowledge_hub": {
+        "title": "Knowledge Hub",
+        "subtitle": "The mental edge: Rules, Culture & Growth",
+        "weekly_focus": "Weekly Focus",
+        "var_mastery": "Mastering the FIFA VAR Updates",
+        "var_desc": "Understanding the latest rule changes on handball positioning and offside interference.",
+        "start_module": "Start Module",
+        "radiant_culture": "Radiant Culture",
+        "club_philosophy": "Club Philosophy",
+        "dressing_room": "Dressing Room Ethos",
+        "social_resp": "Social Responsibility"
+    },
+    "coach_general": {
+        "title": "Squad Overview",
+        "subtitle": "Performance Engine • Live Data Unit",
+        "cumulative_kpi": "Squad Cumulative KPI",
+        "high_injury_risk": "High Injury Risk",
+        "injury_risk_subtext": "{{name}} (ACWR: {{acwr}})"
+    },
+    "coach_management": {
+        "title": "Player Management",
+        "subtitle": "Roster Control • Performance Profiling",
+        "search_placeholder": "Search Squad...",
+        "add_new_player": "Add New Player",
+        "active_roster": "Active Roster ({{count}})",
+        "available": "Available",
+        "at_risk": "At Risk",
+        "fitness": "Fitness",
+        "status": "Status",
+        "peak": "Peak",
+        "ready": "Ready",
+        "active": "Active",
+        "recovering": "Recovering",
+        "right_foot": "Right Foot",
+        "both_feet": "Both Feet",
+        "squad_insights": "Squad Insights",
+        "top_performer": "Top Performer",
+        "score_with_trend": "Score: {{score}} ({{trend}})",
+        "low_availability": "Low Availability",
+        "defensive_at_risk": "{{count}} Defensive players at risk",
+        "export_report": "Export\nReport",
+        "export_subtext": "Full Squad PDF • Weekly Analysis"
+    },
+    "coach_analysis": {
+        "title": "Advanced Analysis",
+        "subtitle": "Performance Intelligence • GPS & Technical Data",
+        "download_raw": "Download Raw Data",
+        "workload_matrix": "Squad Workload Matrix",
+        "workload_subtext": "HSR vs Distance (Weekly)",
+        "loading_viz": "Enhanced Data Visualization Loading...",
+        "tactical_heatmaps": "Tactical Heatmaps",
+        "heatmap_preview": "Dynamic Heatmap Preview",
+        "launch_tech_map": "Launch Technical Map",
+        "kpi_correlations": "KPI Correlations",
+        "correlation_insight": "Correlation detected between Sleep Efficiency (+12%) and Sprint Volume (+8.4%) across the defensive unit.",
+        "intensity_corr": "Intensity Correlation",
+        "fatigue_load_ratio": "Fatigue/Load Ratio",
+        "top_sprint_values": "Top Sprint Values",
+        "squad_distribution": "Squad Distribution",
+        "global_index_avg": "Global Index Average"
+    },
+    "coach_programs": {
+        "title": "Training Engine",
+        "subtitle": "Drill Design • Session Assignment • Scheduling",
+        "create_program": "Create Program",
+        "calendar_view": "Calendar View",
+        "intensity_label": "{{level}} Intensity",
+        "start_live": "Start Live\nSession",
+        "gps_enabled": "Real-time GPS Tracking Enabled",
+        "begin_log": "Begin Log →",
+        "assigned_today": "Assigned Today",
+        "programs": {
+            "transitional_speed": "Transitional Speed",
+            "tech_finishing": "Technical Finishing",
+            "defensive_blocks": "Defensive Blocks"
+        },
+        "units": {
+            "players_count": "{{count}} Players",
+            "forward_unit": "Forward Unit",
+            "entire_squad": "Entire Squad"
+        }
+    },
+    "coach_injury": {
+        "title": "Injury Monitor",
+        "subtitle": "Squad Availability • Risk Mitigation Alerting",
+        "full_incident_log": "Full Incident Log",
+        "risk_heatmap": "Squad Risk Heatmap",
+        "fatigue_vs_load": "Muscle Fatigue vs Load Spikes",
+        "lower_body": "Lower Body",
+        "total_fatigue": "Total Fatigue",
+        "loading_dist": "Global Risk Distribution Loading...",
+        "high_risk_alerts": "High Risk Alerts",
+        "tension": "Tension",
+        "players_ready": "{{ready}}/{{total}} Players Ready",
+        "in_recovery": "In Recovery",
+        "long_term": "Long-Term",
+        "medical_insights": "Medical Insights",
+        "medical_insight_desc": "Overall squad fatigue is down by 14% since shifting training sessions to 10:00 AM. Sleep efficiency remains the primary bottleneck for 3 players."
+    },
+    "coach_nutrition": {
+        "title": "Squad Nutrition",
+        "subtitle": "Nutritional Adherence • Group Metabolism Analysis",
+        "modify_meal_plan": "Modify Team Meal Plan",
+        "meal_adherence": "Meal Log Adherence",
+        "actual_vs_target": "Actual vs Target (Weekly)",
+        "loading_compliance": "Squad Compliance Metrics Loading...",
+        "sup_compliance": "Sup. Compliance",
+        "vitamin_alert": "Vitamin Alert",
+        "vitamin_alert_desc": "Low Vitamin D levels detected in 5 squad members. Recommend immediate supplementation protocol adjustment.",
+        "view_affected": "View Affected Players →",
+        "macro_mix": "Squad Macro Mix",
+        "meal_timing": "Meal Timing",
+        "nutrients": {
+            "protein": "Protein",
+            "carbs": "Carbs",
+            "fats": "Fats",
+            "fiber": "Fiber"
+        },
+        "supplements": {
+            "whey": "Whey Isolate",
+            "magnesium": "Magnesium",
+            "omega3": "Omega-3"
+        },
+        "timing": {
+            "pre_session": "Pre-Session",
+            "post_session": "Post-Session"
+        }
+    },
+    "header": {
+        "role": "Academy Player",
+        "player": "Player",
+        "coach": "Coach"
+    },
     "upcoming": {
         "title": "Upcoming",
         "viewAll": "View All",
         "today": "Today",
         "tomorrow": "Tomorrow"
+    },
+    "assessment": {
+        "title": "Performance Assessment",
+        "subtitle": "Deep Dive into your Athletic & Mental IQ",
+        "tabs": {
+            "all": "Overview",
+            "physical": "Physical",
+            "technical": "Technical",
+            "tactical": "Tactical",
+            "mental": "Mental"
+        },
+        "maturity_desc": "Biological development phase based on PHV calculation.",
+        "dominant_pos": "Dominant Position",
+        "pos_desc": "Current tactical deployment specialization.",
+        "update_pos": "Update Position",
+        "weakness_log": "Weakness Log",
+        "positional_insights": "Positional Insights",
+        "positional_msg": "Your ball-striking metrics are in the 85th percentile for {{pos}}s. Focused training on weak-foot consistency will push your Technical Score to 90+.",
+        "tactical_footprint": "Tactical Footprint",
+        "tactical_msg": "Exceptional positioning in transition phases. Recommendation: Study \"Half-Space Utilization\" in the Knowledge Hub for next-level tactical edge.",
+        "self_eval": "Self Eval",
+        "coach_eval": "Coach Eval",
+        "alignment_verified": "Alignment Verified"
     },
     "progress": {
         "title": "My Progress",
@@ -430,7 +651,8 @@
             "performance_drop": "Performance Drop",
             "recent_activity": "Recent Activity",
             "eval_completed": "Evaluation Completed",
-            "eval_subtext": "Coach {{name}} • {{time}} ago"
+            "eval_subtext": "Coach {{name}} • {{time}} ago",
+            "high_injury_risk_label": "High Injury Risk"
         },
         "sidebar": {
             "evaluations": "Evaluations",
@@ -465,7 +687,8 @@
             "squad_vs_academy": "Squad vs Academy Average",
             "top_performer": "Top Performer",
             "most_improved": "Most Improved",
-            "injury_rate": "Injury Rate"
+            "injury_rate": "Injury Rate",
+            "academy_avg": "Academy Avg"
         },
         "player_profile": {
             "title": "Player Profile",
@@ -597,6 +820,172 @@
             "stressManagement": "Stress Management",
             "coachability": "Coachability",
             "competitiveness": "Competitiveness"
+        }
+    },
+    "bio": {
+        "profile": "Biological Profile",
+        "lab": "The Lab (Bio-Engine)",
+        "predicted_adult": "Predicted Adult",
+        "maturity_status": "Maturity Status",
+        "bloomer": "Bloomer",
+        "current_progress": "Current Progress",
+        "phase": "Bio-Band Phase",
+        "pre_phv": "Pre-Growth Spurt",
+        "circa_phv": "Growth Spurt (PHV)",
+        "post_phv": "Maturation Phase",
+        "add_data": "+ Add Data",
+        "update": "Update",
+        "no_data": "No growth data available. Add measurements to unlock Bio-Banding.",
+        "early": "Early",
+        "late": "Late",
+        "on_time": "On Time",
+        "physiological_metrics": "Physiological Metrics",
+        "resting_hr": "Resting HR",
+        "hrv": "HRV",
+        "blood_pressure": "Blood Pressure",
+        "body_fat": "Body Fat",
+        "vo2_max": "VO2 Max"
+    },
+    "gps": {
+        "total_distance": "Total Distance",
+        "top_speed": "Top Speed",
+        "sprints": "Sprints",
+        "accels_decels": "Accels / Decels",
+        "hi_running": "HI Running"
+    },
+    "dashboard_new": {
+        "recovery_protocol": "Recovery Protocol",
+        "nutrition_focus": "Nutrition Focus",
+        "recovery_load": "Recovery Load",
+        "fatigue_level": "Fatigue Level",
+        "muscle_soreness": "Muscle Soreness",
+        "optimal": "Optimal",
+        "warning": "Warning",
+        "critical": "Critical"
+    },
+    "recovery": {
+        "strategy": {
+            "aggressive_regeneration": "Aggressive Regeneration",
+            "standard_recovery": "Standard Recovery",
+            "maintenance": "Maintenance"
+        },
+        "activity": {
+            "cold_water": "Cold Water Immersion",
+            "cold_water_desc": "10°C - 12°C for inflammation reduction.",
+            "active_walk": "Active Recovery Walk",
+            "active_walk_desc": "Light walking to promote blood flow.",
+            "foam_rolling": "Foam Rolling / Mobility",
+            "foam_rolling_desc": "Targeting major muscle groups.",
+            "dynamic_stretching": "Dynamic Stretching",
+            "dynamic_stretching_desc": "Focusing on hips and hamstrings.",
+            "contrast_showers": "Contrast Showers",
+            "contrast_showers_desc": "Alternating hot and cold water.",
+            "sleep_protocol": "Standard Sleep Protocol",
+            "sleep_protocol_desc": "Optimizing sleep environment for deep recovery."
+        },
+        "nutrition": {
+            "high_protein": "High protein and anti-inflammatory foods (omega-3s)",
+            "electrolytes": "Electrolyte replenishment and moderate carbohydrates",
+            "standard": "Standard hydration and balanced meals"
+        }
+    },
+    "pdi_short": {
+        "physical": "PHY",
+        "technical": "TEC",
+        "tactical": "TAC",
+        "mental": "MEN"
+    },
+    "ai_risks": {
+        "high_fatigue": "High Fatigue / Soreness Detected",
+        "mental_dip": "Mental Freshness Dip",
+        "disconnect": "Performance-Perception Disconnect"
+    },
+    "training_plan": {
+        "active_recovery": "Active Recovery",
+        "development": "Development Focus",
+        "reasoning_recovery": "High physical load detected. Prioritizing regeneration to prevent injury.",
+        "reasoning_development": "Condition optimal. Targeting specific weaknesses to improve PDI."
+    },
+    "drills": {
+        "mobility": "Mobility Flow",
+        "yoga": "Recovery Yoga",
+        "film": "Film Study",
+        "tactical_fundamentals": "Tactical Fundamentals",
+        "advanced_positional": "Advanced Positional Play",
+        "activation_speed": "Speed Activation",
+        "activation_power": "Power Activation",
+        "activation_endurance": "Endurance Maintenance",
+        "activation_agility": "Agility Ladder",
+        "activation_balance": "Balance & Core",
+        "activation_reaction": "Reaction Training",
+        "tech_passing": "Passing Drills",
+        "tech_shooting": "Shooting Practice",
+        "tech_dribbling": "Dribbling Maze",
+        "tech_control": "Ball Control",
+        "tech_crossing": "Crossing Drills",
+        "maintain_forward": "Finishing Scenarios",
+        "maintain_midfielder": "Distribution Play",
+        "maintain_defender": "Defensive Positioning",
+        "maintain_goalkeeper": "Reflex Work"
+    },
+    "nutrition_module": {
+        "title": "Daily Nutrition",
+        "calories": "Calories",
+        "protein": "Protein",
+        "carbs": "Carbs",
+        "fat": "Fat",
+        "insights": "Nutrition Insights",
+        "log_meal": "Log Meal",
+        "meal_type": "Meal Type",
+        "description": "Description",
+        "save_meal": "Save Meal",
+        "cancel": "Cancel",
+        "breakfast": "Breakfast",
+        "lunch": "Lunch",
+        "dinner": "Dinner",
+        "snack": "Snack"
+    },
+    "education_module": {
+        "title": "Football Academy Knowledge",
+        "latest_updates": "Latest Updates",
+        "methodology": "Methodology Spotlight",
+        "read_article": "Read full article",
+        "modules": "modules",
+        "categories": {
+            "laws": "Laws of the Game",
+            "technical": "Technical Principles",
+            "modern": "Modern Game Models",
+            "training_methods": "Training Methodologies",
+            "rules_2026": "IFAB Rules 2026/27"
+        },
+        "methods": {
+            "continuous": "Continuous Training",
+            "interval": "Interval Training",
+            "repetition": "Repetition Training",
+            "circuit": "Circuit Training"
+        }
+    },
+    "injury_module": {
+        "title": "Injury Prediction",
+        "high_risk": "High Injury Risk",
+        "system_alert": "System detected abnormal workload/fatigue patterns.",
+        "at_risk_areas": "At-Risk Body Areas",
+        "acwr": "ACWR",
+        "fatigue": "Fatigue",
+        "level": {
+            "low": "Low",
+            "moderate": "Moderate",
+            "high": "High",
+            "critical": "Critical"
+        },
+        "area": {
+            "lower_body": "Lower Body (Hamstrings/Quads)"
+        },
+        "indicator": {
+            "acwr_high": "Acute:Chronic Workload Ratio is high (>1.5)",
+            "soreness_high": "High muscle soreness reported",
+            "fatigue_high": "Elevated fatigue levels",
+            "history_hamstring": "History of hamstring injuries"
         }
     }
 }

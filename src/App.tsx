@@ -14,25 +14,37 @@ import PlayerLogin from './auth/player/PlayerLogin';
 import PlayerSignup from './auth/player/PlayerSignup';
 import PlayerForgotPassword from './auth/player/PlayerForgotPassword';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+
+// Layouts
 import CoachLayout from './coach/CoachLayout';
-import CoachDashboard from './coach/Dashboard';
-import Analytics from './coach/Analytics';
-import SquadView from './coach/squad/SquadView';
-import PlayerProfile from './coach/player/PlayerProfile';
 import PlayerLayout from './player/PlayerLayout';
-import PlayerDashboard from './player/Dashboard';
-import ProgressView from './player/progress/ProgressView';
-import TrainingView from './player/training/TrainingView';
-import FeedbackView from './player/feedback/FeedbackView';
-import GoalsView from './player/goals/GoalsView';
-import InsightsView from './player/insights/InsightsView';
+
+// Player Pages
+import PlayerHome from './player/pages/Home';
+import PlayerAssessment from './player/pages/Assessment';
+import PlayerTraining from './player/pages/Training';
+import PlayerNutrition from './player/pages/Nutrition';
+import PlayerRecovery from './player/pages/Recovery';
+import PlayerInjury from './player/pages/Injury';
+import PlayerCulture from './player/pages/Culture';
+
+// Coach Pages
+import CoachGeneral from './coach/pages/General';
+import CoachManagement from './coach/pages/Management';
+import CoachAnalysis from './coach/pages/Analysis';
+import CoachPrograms from './coach/pages/Programs';
+import CoachInjury from './coach/pages/Injury';
+import CoachNutrition from './coach/pages/Nutrition';
+
 import { useTranslation } from 'react-i18next';
+import GuidedTour from './components/shared/GuidedTour';
 
 function App() {
   const { i18n } = useTranslation();
 
   return (
     <AuthProvider key={i18n.language}>
+      <GuidedTour />
       <MedicalProvider>
         <PhysicalProvider>
           <TechnicalProvider>
@@ -41,18 +53,16 @@ function App() {
                 <AICoachProvider>
                   <BrowserRouter>
                     <Routes>
-                      {/* Coach Auth Routes */}
+                      {/* --- AUTH ROUTES --- */}
                       <Route path="/login" element={<LoginPage />} />
                       <Route path="/coach/login" element={<CoachLogin />} />
                       <Route path="/coach/signup" element={<CoachSignup />} />
                       <Route path="/coach/forgot-password" element={<CoachForgotPassword />} />
-
-                      {/* Player Auth Routes */}
                       <Route path="/player/login" element={<PlayerLogin />} />
                       <Route path="/player/signup" element={<PlayerSignup />} />
                       <Route path="/player/forgot-password" element={<PlayerForgotPassword />} />
 
-                      {/* Coach Routes */}
+                      {/* --- COACH ROUTES --- */}
                       <Route
                         path="/coach"
                         element={
@@ -61,15 +71,17 @@ function App() {
                           </ProtectedRoute>
                         }
                       >
-                        <Route path="dashboard" element={<CoachDashboard />} />
-                        <Route path="squad" element={<SquadView />} />
-                        <Route path="evaluations" element={<CoachDashboard />} /> {/* Placeholder/Redirect */}
-                        <Route path="analytics" element={<Analytics />} />
-                        <Route path="player/:id" element={<PlayerProfile />} />
-                        <Route path="*" element={<Navigate to="/coach/dashboard" replace />} />
+                        <Route index element={<Navigate to="general" replace />} />
+                        <Route path="general" element={<CoachGeneral />} />
+                        <Route path="management" element={<CoachManagement />} />
+                        <Route path="analysis" element={<CoachAnalysis />} />
+                        <Route path="programs" element={<CoachPrograms />} />
+                        <Route path="injury" element={<CoachInjury />} />
+                        <Route path="nutrition" element={<CoachNutrition />} />
+                        <Route path="*" element={<Navigate to="general" replace />} />
                       </Route>
 
-                      {/* Player Routes */}
+                      {/* --- PLAYER ROUTES --- */}
                       <Route
                         path="/player"
                         element={
@@ -78,16 +90,18 @@ function App() {
                           </ProtectedRoute>
                         }
                       >
-                        <Route path="dashboard" element={<PlayerDashboard />} />
-                        <Route path="progress" element={<ProgressView />} />
-                        <Route path="training" element={<TrainingView />} />
-                        <Route path="feedback" element={<FeedbackView />} />
-                        <Route path="goals" element={<GoalsView />} />
-                        <Route path="insights" element={<InsightsView />} />
-                        <Route path="*" element={<Navigate to="/player/dashboard" replace />} />
+                        <Route index element={<Navigate to="home" replace />} />
+                        <Route path="home" element={<PlayerHome />} />
+                        <Route path="assessment" element={<PlayerAssessment />} />
+                        <Route path="training" element={<PlayerTraining />} />
+                        <Route path="nutrition" element={<PlayerNutrition />} />
+                        <Route path="recovery" element={<PlayerRecovery />} />
+                        <Route path="injury" element={<PlayerInjury />} />
+                        <Route path="culture" element={<PlayerCulture />} />
+                        <Route path="*" element={<Navigate to="home" replace />} />
                       </Route>
 
-                      {/* Default Redirect */}
+                      {/* --- GLOBAL REDIRECTS --- */}
                       <Route path="/" element={<Navigate to="/login" replace />} />
                       <Route path="*" element={<Navigate to="/login" replace />} />
                     </Routes>

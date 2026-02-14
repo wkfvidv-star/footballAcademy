@@ -33,6 +33,43 @@ const saveUsers = (users: StoredUser[]) => {
 };
 
 export const mockAuth = {
+    // Seed Demo Users
+    seedDemoUsers: () => {
+        const users = getUsers();
+        let changed = false;
+
+        // Demo Coach
+        if (!users.some(u => u.email === 'coach@example.com')) {
+            users.push({
+                id: 'demo-coach-id',
+                email: 'coach@example.com',
+                password: 'password123',
+                role: 'coach',
+                name: 'Coach Demo',
+                academyCode: 'ACADEMY-DEMO',
+                avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=CoachDemo'
+            });
+            changed = true;
+        }
+
+        // Demo Player
+        if (!users.some(u => u.email === 'player@example.com')) {
+            users.push({
+                id: 'demo-player-id',
+                email: 'player@example.com',
+                password: 'password123',
+                role: 'player',
+                name: 'Player Demo',
+                avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=PlayerDemo'
+            });
+            changed = true;
+        }
+
+        if (changed) {
+            saveUsers(users);
+            console.log('Demo users seeded');
+        }
+    },
     // Sign Up
     signUp: async (email: string, password: string, role: UserRole, name: string, academyCode?: string): Promise<{ user: MockUser | null; error: string | null }> => {
         // Simulate network delay

@@ -93,7 +93,7 @@ export default function Analytics() {
                                 />
                                 <Legend />
                                 <Bar dataKey="squad" name={t('coach.dashboard.stat_total_squad')} fill="#22c55e" radius={[0, 4, 4, 0]} barSize={20} />
-                                <Bar dataKey="academy" name="Academy Avg" fill="#3f3f46" radius={[0, 4, 4, 0]} barSize={20} />
+                                <Bar dataKey="academy" name={t('coach.analytics.academy_avg')} fill="#3f3f46" radius={[0, 4, 4, 0]} barSize={20} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>

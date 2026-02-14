@@ -84,7 +84,7 @@ export default function CoachDashboard() {
                                 <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-3 animate-pulse">
                                     <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5"></div>
                                     <div>
-                                        <div className="text-sm font-bold text-white uppercase tracking-wider">High Injury Risk</div>
+                                        <div className="text-sm font-bold text-white uppercase tracking-wider">{t('coach.dashboard.high_injury_risk_label')}</div>
                                         <div className="text-xs text-zinc-400 mt-0.5">Riyad Mahrez (ACWR: {loadMetrics.acwr})</div>
                                     </div>
                                 </div>

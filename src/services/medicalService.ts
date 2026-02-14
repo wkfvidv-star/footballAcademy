@@ -121,7 +121,10 @@ export const MedicalService = {
                 sorenessLevel: Math.floor(Math.random() * 3) + 3 as any,
                 stressLevel: Math.floor(Math.random() * 3) + 3 as any,
                 mood: Math.floor(Math.random() * 3) + 3 as any,
-            });
+                restingHR: 50 + Math.floor(Math.random() * 15),
+                hrv: 60 + Math.floor(Math.random() * 20),
+                vo2Max: 50 + Math.random() * 10,
+            } as any);
 
             // Random session (Rest days included)
             if (Math.random() > 0.2) { // 80% training days

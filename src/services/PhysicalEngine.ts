@@ -63,32 +63,32 @@ export const PhysicalEngine = {
 
         return [
             {
-                label: 'Speed',
+                label: 'Sprint Speed',
                 score: parseFloat(avg(get('PHY_SPD_10'), get('PHY_SPD_30'), get('PHY_SPD_RSA')).toFixed(1)),
                 fullMark: 10
             },
             {
-                label: 'Power',
+                label: 'Explosive Power',
                 score: parseFloat(avg(get('PHY_PWR_VJ'), get('PHY_PWR_BJ'), get('PHY_PWR_SHOT')).toFixed(1)),
                 fullMark: 10
             },
             {
-                label: 'Endurance',
+                label: 'Aerobic Capacity',
                 score: parseFloat(avg(get('PHY_END_YOYO'), get('PHY_END_BEEP')).toFixed(1)),
                 fullMark: 10
             },
             {
-                label: 'Agility',
+                label: 'Agility (COD)',
                 score: parseFloat(avg(get('PHY_AGL_ILL')).toFixed(1)),
                 fullMark: 10
             },
             {
-                label: 'Balance',
+                label: 'Neuromuscular Balance',
                 score: parseFloat(avg(get('PHY_BAL_Y')).toFixed(1)),
                 fullMark: 10
             },
             {
-                label: 'Reaction',
+                label: 'Cognitive Reaction',
                 score: parseFloat(avg(get('PHY_REA_LIGHT')).toFixed(1)),
                 fullMark: 10
             },
